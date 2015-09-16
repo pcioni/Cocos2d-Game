@@ -45,7 +45,7 @@ var Player = cc.Sprite.extend ({
                 event: cc.EventListener.KEYBOARD ,
                 onKeyPressed: function(key, event)
                 {
-                    console.log(typeof(key));
+                    //console.log(typeof(key));
                     if(key == 87) this.UP = true;
                     else if(key == 65) this.LEFT = true;
                     else if(key == 83) this.DOWN = true;
