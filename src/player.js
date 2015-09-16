@@ -5,6 +5,15 @@ var Player = cc.Sprite.extend ({
     ctor: function () {
         this._super(res.Player_png);
 
+        this.UP = false;
+        this.DOWN = false;
+        this.LEFT = false;
+        this.RIGHT = false;
+
+        this.scheduleUpdate();
+
+
+
         //cc.spriteFrameCache.addSpriteFrame (new cc.SpriteFrame
         //(res.squid_png, cc.rect(0,0,100,137)),"squid1");
 
@@ -32,8 +41,22 @@ var Player = cc.Sprite.extend ({
                 event: cc.EventListener.KEYBOARD ,
                 onKeyPressed: function(key, event)
                 {
-                    cc.log("Key pressed: " + key.toString());
-                }
+                    console.log(typeof(key));
+                    if(key == 87) this.UP = true;
+                    else if(key == 65) this.LEFT = true;
+                    else if(key == 83) this.DOWN = true;
+                    else if(key == 68) this.RIGHT = true;
+                    //cc.log("Key pressed: " + key.toString());
+                }.bind(this),
+                onKeyReleased: function(key, event)
+                {
+
+                    if(key == 87) this.UP = false;
+                    else if(key == 65) this.LEFT = false;
+                    else if(key == 83) this.DOWN = false;
+                    else if(key == 68) this.RIGHT = false;
+                    //cc.log("Key Released: " + key.toString());
+                }.bind(this)
             }),this);
 
         return true;
@@ -44,5 +67,21 @@ var Player = cc.Sprite.extend ({
     // to activate this if you want it
     update:function(dt) {
 
+        if(this.UP)
+        {
+            this.y += 2;
+        }
+        else if(this.DOWN)
+        {
+            this.y -= 2;
+        }
+        else if(this.LEFT)
+        {
+            this.x -= 2;
+        }
+        else if(this.RIGHT)
+        {
+            this.x += 2;
+        }
     }
 });
