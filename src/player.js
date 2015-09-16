@@ -10,6 +10,10 @@ var Player = cc.Sprite.extend ({
         this.LEFT = false;
         this.RIGHT = false;
 
+        this.speed = 5;
+
+        this.scale = 0.6;
+
         this.scheduleUpdate();
 
 
@@ -69,19 +73,19 @@ var Player = cc.Sprite.extend ({
 
         if(this.UP)
         {
-            this.y += 2;
+            this.y += this.speed;
         }
         else if(this.DOWN)
         {
-            this.y -= 2;
+            this.y -= this.speed;
         }
         else if(this.LEFT)
         {
-            this.x -= 2;
+            this.x -= this.speed;
         }
         else if(this.RIGHT)
         {
-            this.x += 2;
+            this.x += this.speed;
         }
     }
 });
