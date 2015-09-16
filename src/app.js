@@ -12,6 +12,13 @@ var HelloWorldLayer = cc.Layer.extend({
         // ask the window size
         var size = cc.winSize;
 
+        var player = new Player;
+
+        player.x = 100;
+        player.y = 100;
+
+        this.addChild(player);
+
         // add a "close" icon to exit the progress. it's an autorelease object
         var closeItem = new cc.MenuItemImage(
             res.CloseNormal_png,
@@ -35,7 +42,7 @@ var HelloWorldLayer = cc.Layer.extend({
         // 3. add your codes below...
         // add a label shows "Hello World"
         // create and initialize a label
-        var helloLabel = new cc.LabelTTF("Hello World", "Arial", 38);
+        var helloLabel = new cc.LabelTTF("There should be a player here", "Arial", 38);
         // position the label on the center of the screen
         helloLabel.x = size.width / 2;
         helloLabel.y = 0;

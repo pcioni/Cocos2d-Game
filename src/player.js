@@ -1,0 +1,48 @@
+/**
+ * Created by Matte on 9/16/2015.
+ */
+var Player = cc.Sprite.extend ({
+    ctor: function () {
+        this._super(res.Player_png);
+
+        //cc.spriteFrameCache.addSpriteFrame (new cc.SpriteFrame
+        //(res.squid_png, cc.rect(0,0,100,137)),"squid1");
+
+        /*
+         cc.eventManager.addListener({
+         event: cc.EventListener.KEYBOARD,
+         onKeyPressed:  function(keyCode, event){
+         var label = event.getCurrentTarget();
+         label.setString("Key " + keyCode.toString() + " was pressed!");
+         },
+         onKeyReleased: function(keyCode, event){
+         var label = event.getCurrentTarget();
+         label.setString("Key " + keyCode.toString() + " was released!");
+         }
+         }, statusLabel);
+         */
+
+
+        //W: keycode 87
+        //A: keycode 65
+        //S: keycode 83
+        //D: keycode 68
+        cc.eventManager.addListener (
+            cc.EventListener.create ({
+                event: cc.EventListener.KEYBOARD ,
+                onKeyPressed: function(key, event)
+                {
+                    cc.log("Key pressed: " + key.toString());
+                }
+            }),this);
+
+        return true;
+    },
+    // you can also use the update method, which is called every frame
+    // dt is the deltaTime, amount of time since last update call
+    // make sure to call this.scheduleUpdate() in the constructor
+    // to activate this if you want it
+    update:function(dt) {
+
+    }
+});
