@@ -3,7 +3,9 @@ var res = {
     CloseNormal_png : "res/CloseNormal.png",
     CloseSelected_png : "res/CloseSelected.png",
     Player_png: "res/Player.png",
-    Car_png: "res/Car.png"
+    Car_png: "res/Car.png",
+    CarBroke1_png: "res/carbroke1.png"
+
 };
 
 var g_resources = [];

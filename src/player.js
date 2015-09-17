@@ -1,6 +1,3 @@
-/**
- * Created by Matte on 9/16/2015.
- */
 var Player = cc.Sprite.extend ({
     ctor: function () {
         this._super(res.Player_png);
@@ -9,6 +6,10 @@ var Player = cc.Sprite.extend ({
         this.DOWN = false;
         this.LEFT = false;
         this.RIGHT = false;
+
+        this.speed = 5;
+
+        this.scale = 0.6;
 
         this.scheduleUpdate();
 
@@ -24,7 +25,7 @@ var Player = cc.Sprite.extend ({
                 event: cc.EventListener.KEYBOARD ,
                 onKeyPressed: function(key, event)
                 {
-                    console.log(typeof(key));
+                    //console.log(typeof(key));
                     if(key == 87) this.UP = true;
                     else if(key == 65) this.LEFT = true;
                     else if(key == 83) this.DOWN = true;
@@ -51,19 +52,19 @@ var Player = cc.Sprite.extend ({
     update:function(dt) {
         if(this.UP)
         {
-            this.y += 2;
+            this.y += this.speed;
         }
         else if(this.DOWN)
         {
-            this.y -= 2;
+            this.y -= this.speed;
         }
         else if(this.LEFT)
         {
-            this.x -= 2;
+            this.x -= this.speed;
         }
         else if(this.RIGHT)
         {
-            this.x += 2;
+            this.x += this.speed;
         }
     }
 });

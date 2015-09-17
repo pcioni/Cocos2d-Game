@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>playerleft1_80x106_8fps_strip4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{302,94}}</string>
+                <key>offset</key>
+                <string>{-1,4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,2},{302,94}}</string>
+                <key>sourceSize</key>
+                <string>{320,106}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>playerleft1_80x106_8fps_strip4.png</string>
+            <key>size</key>
+            <string>{306,98}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:462818f8b0843e877e1fe144f1b8c943:f1b5a264a490743d3d74a8945c48d67f:dfaec8d47d5a708b89c878da4261b899$</string>
+            <key>textureFileName</key>
+            <string>playerleft1_80x106_8fps_strip4.png</string>
+        </dict>
+    </dict>
+</plist>

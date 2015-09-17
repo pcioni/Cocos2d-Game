@@ -10,8 +10,8 @@ var GameLayer = cc.Layer.extend({
         this.player.y = 100;
 
         this.car = new Car;
-        this.car.x = 275;
-        this.car.y = 200;
+        this.car.x = screen.width/2;
+        this.car.y = 78;
 
         this.addChild(this.player);
         this.addChild(this.car);
