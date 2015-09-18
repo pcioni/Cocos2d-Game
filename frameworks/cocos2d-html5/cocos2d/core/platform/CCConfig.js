@@ -222,7 +222,7 @@ cc.USE_LA88_LABELS = 1;
  * @constant
  * @type {Number}
  */
-cc.SPRITE_DEBUG_DRAW = 0;
+cc.SPRITE_DEBUG_DRAW = 1;
 
 /**
  * <p>
@@ -234,7 +234,7 @@ cc.SPRITE_DEBUG_DRAW = 0;
  * @constant
  * @type {Number}
  */
-cc.SPRITEBATCHNODE_DEBUG_DRAW = 0;
+cc.SPRITEBATCHNODE_DEBUG_DRAW = 1;
 
 /**
  * <p>
