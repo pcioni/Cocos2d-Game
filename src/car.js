@@ -16,6 +16,8 @@ var Car = cc.Sprite.extend ({
 
         this.runAction(seq);
 
+        //ignore this comment
+
 
 
         return true;
