@@ -10,7 +10,7 @@ var Player = cc.Sprite.extend ({
 
         this.speed = 5;
 
-        this.scale = 0.6;
+        //this.scale = 0.6;
 
         this.NORMAL_STATE = 0;
         this.HOLDING_STATE = 1;
