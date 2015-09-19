@@ -66,7 +66,9 @@ var Player = cc.Sprite.extend ({
             if (this.x > 188 + this.width/2)
                 this.x -= this.speed;
         }
-        else if(this.RIGHT)
-            this.x += this.speed;
+        else if(this.RIGHT){
+            if (this.x < 1920 - this.width/2)
+                this.x += this.speed;
+        }
     }
 });
