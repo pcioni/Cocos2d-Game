@@ -11,13 +11,10 @@ var Player = cc.Sprite.extend ({
         this.speed = 5;
 
         //this.scale = 0.6;
-
-        this.NORMAL_STATE = 0;
-        this.HOLDING_STATE = 1;
-        this.state = this.NORMAL_STATE;
+        this.state = "nothing";
+        this.nothing = "nothing";
 
         this.scheduleUpdate();
-
 
         //W: keycode 87
         //A: keycode 65
@@ -25,7 +22,6 @@ var Player = cc.Sprite.extend ({
         //D: keycode 68
         //E: 69
         //Space: 32
-
 
         cc.eventManager.addListener (
             cc.EventListener.create ({
