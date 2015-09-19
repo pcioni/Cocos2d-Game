@@ -25,9 +25,20 @@ var GameLayer = cc.Layer.extend({
         this.car.x = size.width;
         this.car.y = 78;
 		
-		this.crate = new Crate;
-		this.crate.x = size.width/2;
-		this.crate.y = size.height/2;
+		this.doors = new Crate;
+        this.doors.contents = "door";
+        this.doors.x = size.width/2 - 250;
+        this.doors.y = size.height/2;
+
+        this.tires = new Crate;
+        this.tires.contents = "tire";
+        this.tires.x = size.width/2;
+        this.tires.y = size.height/2;
+
+        this.engines = new Crate;
+        this.engines.contents = "engine";
+        this.engines.x = size.width/2 + 250;
+        this.engines.y = size.height/2;
 
         var background = new cc.Sprite(res.Background_png);
 
@@ -39,10 +50,12 @@ var GameLayer = cc.Layer.extend({
 
         this.addChild(this.player);
         this.addChild(this.car);
-		this.addChild(this.crate);
+		this.addChild(this.tires);
+		this.addChild(this.doors);
+		this.addChild(this.engines);
 
 
-        this.spritelist = [this.player, this.car, this.crate];
+        this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors];
 
 
         return true;

@@ -66,7 +66,7 @@ var Player = cc.Sprite.extend ({
         {
             this.y -= this.speed;
         }
-        else if(this.LEFT)
+        if(this.LEFT)
         {
             this.x -= this.speed;
         }

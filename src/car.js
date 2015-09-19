@@ -1,9 +1,8 @@
 var Car = cc.Sprite.extend ({
     ctor: function () {
         this._super(res.CarBroke1_png);
-        //cc.spriteFrameCache.addSpriteFrame (new cc.SpriteFrame
-        //(res.squid_png, cc.rect(0,0,100,137)),"squid1");
-        this.tag = "bin";
+
+        this.contents = "";
 
         var size = cc.winSize;
 
