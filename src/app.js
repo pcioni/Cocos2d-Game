@@ -12,8 +12,8 @@ var GameLayer = cc.Layer.extend({
         this._super();
         this.scheduleUpdate();
 
-        var audio = cc.audioEngine; //when using anything with audio in app.js, put audio. in front of it
-        audio.playMusic(res.StageTheme_wav,true); //plays the stage theme
+        this.audio = cc.audioEngine; //when using anything with audio in app.js, put audio. in front of it
+        this.audio.playMusic(res.StageTheme_wav,true); //plays the stage theme
 
         cc.view.setDesignResolutionSize(1920, 1080, cc.ResolutionPolicy.SHOW_ALL);
         cc.winSize.width = 1920;
@@ -23,11 +23,11 @@ var GameLayer = cc.Layer.extend({
 
         this.player = new Player;
         this.player.x = size.width/2;
-        this.player.y = size.width/2;
+        this.player.y = size.height/2;
 
         this.car = new Car;
         this.car.x = size.width;
-        this.car.y = 78;
+        this.car.y = 100;
 		
 		this.doors = new Crate;
         this.doors.contents = "door";
