@@ -5,10 +5,12 @@ var Car = cc.Sprite.extend ({
         //(res.squid_png, cc.rect(0,0,100,137)),"squid1");
         this.tag = "bin";
 
-        var moveOnScreen = new cc.MoveTo(1.5,cc.p(screen.width/2 - 220,78));
+        var size = cc.winSize;
+
+        var moveOnScreen = new cc.MoveTo(1.5,cc.p(size.width - 220,78));
         var moveLeft = new cc.MoveTo(6,cc.p(110,78));
-        var moveUp = new cc.MoveTo(5,cc.p(110,screen.height/2 - 78));
-        var moveRight = new cc.MoveTo(8,cc.p(screen.width/2 - 110,screen.height/2 - 78));
+        var moveUp = new cc.MoveTo(5,cc.p(110,size.height - 78));
+        var moveRight = new cc.MoveTo(8,cc.p(size.width - 110,size.height - 78));
         //Add a function that checks to see if you've succeeded or not (point system as well)
 
 

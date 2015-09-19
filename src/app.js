@@ -11,18 +11,23 @@ var GameLayer = cc.Layer.extend({
     ctor:function () {
         this._super();
         this.scheduleUpdate();
-
-        var size = cc.winSize;
         cc.view.setDesignResolutionSize(1920, 1080, cc.ResolutionPolicy.SHOW_ALL);
+        cc.winSize.width = 1920;
+        cc.winSize.height = 1080;
+        var size = cc.winSize;
         cc.log(size);
 
         this.player = new Player;
-        this.player.x = 100;
-        this.player.y = 100;
+        this.player.x = size.width/2;
+        this.player.y = size.width/2;
 
         this.car = new Car;
-        this.car.x = screen.width/2;
+        this.car.x = size.width;
         this.car.y = 78;
+		
+		this.crate = new Crate;
+		this.crate.x = size.width/2;
+		this.crate.y = size.height/2;
 
         var background = new cc.Sprite(res.Background_png);
 
@@ -34,9 +39,10 @@ var GameLayer = cc.Layer.extend({
 
         this.addChild(this.player);
         this.addChild(this.car);
+		this.addChild(this.crate);
 
-        //Player should ALWAYS be in index 0 due to the way CheckCollisions uses this list.
-        this.spritelist = [this.player, this.car];
+
+        this.spritelist = [this.player, this.car, this.crate];
 
 
         return true;
@@ -50,9 +56,10 @@ var GameLayer = cc.Layer.extend({
     //Calls ChangeState if we collide with something, and also handles if the ACTION key is hit.
     CheckCollisions:function() {
         var i;
-        for (i = 0; i < this.spritelist.length; i++) {
-            if (cc.rectIntersectsRect(this.spritelist[0].getBoundingBox(), this.spritelist[i].getBoundingBox())) {
+        for (i = 1; i < this.spritelist.length; i++) {
+            if (cc.rectIntersectsRect(this.player.getBoundingBox(), this.spritelist[i].getBoundingBox())) {
                 this.player.setColor(new cc.Color(255, 0, 0));
+				cc.log("hit")
                 if (this.player.ACTION == true)
                     this.ChangeState(this.spritelist[i]);
             }
@@ -64,24 +71,10 @@ var GameLayer = cc.Layer.extend({
     //hitObject is the object that we've collided with.
     //This function will be a giant chain of if-else statements for each and every object.
     ChangeState:function(hitObject) {
-        /* commented to distinguish working code from prototypes
-
-        if (this.player.state == this.player.NOTHING) {
-
+        if (this.player.state == this.player.NORMAL_STATE) {
+            this.player.state = this.player.HOLDING_STATE;
+            cc.log("Changed state from NORMAL_STATE to HOLDING_STATE)");
         }
-        
-        else if (this.player.state != this.player.NOTHING) {
-            if (this.player.state == this.player.ENGINE) {
-    
-            }
-            if (this.player.state == this.player.DOOR) {
-    
-            }
-            if (this.player.state == this.player.TIRE) {
-    
-            }
-        }
-        */
     }
 });
 
