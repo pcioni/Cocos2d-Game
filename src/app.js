@@ -21,6 +21,31 @@ var GameLayer = cc.Layer.extend({
         var size = cc.winSize;
         cc.log(size);
 
+
+
+        this.item = new Item;
+
+        //Paint children
+        this.blackPaint = new Paint;
+        this.redPaint = new Paint;
+        this.whitePaint = new Paint;
+
+        this.blackPaint.ccolor = "black";
+        this.redPaint.ccolor = "red";
+        this.whitePaint.ccolor = "white";
+
+        this.blackPaint.setTexture(res.blackPaint_png);
+        this.redPaint.setTexture(res.redPaint_png);
+        this.whitePaint.setTexture(res.whitePaint_png);
+
+        this.blackPaint.x = 1450;
+        this.whitePaint.x = 1450;
+        this.redPaint.x = 1450;
+        this.blackPaint.y = 300;
+        this.whitePaint.y = 450;
+        this.redPaint.y = 600;
+
+        //Player children
         this.player = new Player;
         this.player.x = size.width/2;
         this.player.y = size.height/2;
@@ -28,7 +53,8 @@ var GameLayer = cc.Layer.extend({
         this.car = new Car;
         this.car.x = size.width;
         this.car.y = 100;
-		
+
+        //Item children
 		this.doors = new Crate;
         this.doors.contents = "door";
         this.doors.x = size.width/2 - 250;
@@ -45,31 +71,46 @@ var GameLayer = cc.Layer.extend({
         this.engines.y = size.height/2;
 
         var background = new cc.Sprite(res.Background_png);
-
-        cc.log(background);
-
-        this.addChild(background);
         background.x = size.width / 2;
         background.y = size.height / 2;
 
+        this.addChild(background);
+        this.addChild(this.blackPaint);
+        this.addChild(this.redPaint);
+        this.addChild(this.whitePaint);
         this.addChild(this.player);
         this.addChild(this.car);
 		this.addChild(this.tires);
 		this.addChild(this.doors);
 		this.addChild(this.engines);
+<<<<<<< HEAD
 		
 		//prints out what the car needs to the console
 		
 		this.PrintCarReq(this.car.req);
 
+=======
+        this.addChild(this.item);
+
+		//prints out what the car needs
+		for(var i=0; i<this.car.req.length; i++){
+			cc.log(this.car.req[i].toString());
+		}
+		cc.log("needHammer: "+this.car.needHammer);
+		cc.log("needRench: "+this.car.needRench);
+		cc.log(this.car.paint);
+>>>>>>> 9a34a91ff25ab4f0587731a09f5ab2a7cd04bfcc
 		//////////////////////////////
 
-        this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors];
+        this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors,
+                            this.blackPaint, this.redPaint, this.whitePaint];
 
         return true;
     },
 
     update:function (dt) {
+        this.item.x = this.player.x;
+        this.item.y = this.player.y;
         this.CheckCollisions();
     },
 
@@ -82,8 +123,6 @@ var GameLayer = cc.Layer.extend({
                 if (this.player.ACTION == true)
                     this.ChangeState(this.spritelist[i]);
             }
-            else
-                this.player.setColor(new cc.Color(255, 255, 255));
         }
 
     },
@@ -96,11 +135,33 @@ var GameLayer = cc.Layer.extend({
                 cc.log("Not holding anything, and next to car");
             }
             else if (hitObject.tag == "bin") {
-                cc.log("Not holding anything and next to create holding " + hitObject.contents);
+                if (hitObject.contents == "door") this.item.setTexture(res.Door_png);
+                if (hitObject.contents == "tire") this.item.setTexture(res.Tire_png);
+                if (hitObject.contents == "engine") this.item.setTexture(res.Engine_png);
+                cc.log("Not holding anything and next to crate holding " + hitObject.contents);
                 this.player.state = hitObject.contents;
+            }
+            else if (hitObject.tag == "paint") {
+                if (hitObject.ccolor == "white") {
+                    hitObject.setTexture(res.paintBlank);
+                    this.item.setTexture(res.whitePaint_png);
+                    this.player.state = "whitePaint";
+                }
+                if (hitObject.ccolor == "black") {
+                    hitObject.setTexture(res.paintBlank);
+                    this.item.setTexture(res.blackPaint_png);
+                    this.player.state = "blackPaint";
+                }
+                if (hitObject.ccolor == "red") {
+                    hitObject.setTexture(res.paintBlank);
+                    this.item.setTexture(res.redPaint_png);
+                    this.player.state = "redPaint";
+                }
+                cc.log("picked up paint color " + hitObject.ccolor)
             }
         }
         else if (hitObject.tag == "car") {
+            this.item.setTexture(res.blank);
             cc.log("Holding something, and next to car");
 			
 			//checks if the car needs held object, if so -1 from the car needing it

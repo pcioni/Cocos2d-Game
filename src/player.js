@@ -8,7 +8,7 @@ var Player = cc.Sprite.extend ({
         this.RIGHT = false;
         this.ACTION = false;
 
-        this.speed = 8;
+        this.speed = 12;
 
         //this.scale = 0.6;
         this.state = "nothing";
