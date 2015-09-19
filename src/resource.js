@@ -8,6 +8,8 @@ var res = {
     CarBroke1_png: "res/carbroke1.png",
     Background_png: "res/TestBG1.png",
 	Crate_png: "res/Crate.png",
+    Player_Left_png: "res/runLeft.png",
+    Player_Left_plist: "res/runLeft.plist",
 
     //Sound Resources
     StageTheme_wav: "res/sound/StageTheme.wav",

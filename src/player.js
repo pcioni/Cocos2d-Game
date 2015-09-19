@@ -1,6 +1,8 @@
 var Player = cc.Sprite.extend ({
     ctor: function () {
+
         this._super(res.Player_png);
+        //this.sprite = new cc.Sprite("res/#Left1.png");
 
         this.UP = false;
         this.DOWN = false;
@@ -9,6 +11,22 @@ var Player = cc.Sprite.extend ({
         this.ACTION = false;
 
         this.speed = 5;
+
+        cc.spriteFrameCache.addSpriteFrame(res.Player_Left_plist);
+
+        var leftFrames = [];
+        for(var i = 0; i < 4; i++)
+        {
+            var str = "Left" + i + ".png";
+            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+            leftFrames.push(frame);
+        }
+
+        this.leftAnim = new cc.Animation(leftFrames, 0.3);
+        this.runLeft = new cc.repeatForever(new cc.Animate(this.leftAnim));
+        cc.log(this.getNumberOfRunningActions());
+        this.runAction(this.runLeft);
+        cc.log(this.getNumberOfRunningActions());
 
         //this.scale = 0.6;
         this.state = "nothing";
@@ -57,10 +75,13 @@ var Player = cc.Sprite.extend ({
         if(this.UP)
         {
             this.y += this.speed;
+            this.runAction(this.runLeft);
+            cc.log("Running");
         }
         else if(this.DOWN)
         {
             this.y -= this.speed;
+            this.runAction(this.runLeft);
         }
         if(this.LEFT)
         {
