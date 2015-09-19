@@ -33,12 +33,6 @@ var Car = cc.Sprite.extend ({
 		this.needHammer=Math.floor((Math.random()*10))%2;
 		this.needRench=Math.floor((Math.random()*10))%2;
 		this.paint=this.paintColors[Math.floor((Math.random()*3))];
-		
-		if(this.needHammer==1)
-			this.req.push("Hammer");
-		if(this.needRench==1)
-			this.req.push("Rench");
-		this.req.push(this.paint);
 		/////////////////////////////////////////////////////////
 		
         return true;
