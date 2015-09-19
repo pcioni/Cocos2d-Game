@@ -21,6 +21,8 @@ var GameLayer = cc.Layer.extend({
         var size = cc.winSize;
         cc.log(size);
 
+        this.item = new Item;
+
         this.player = new Player;
         this.player.x = size.width/2;
         this.player.y = size.height/2;
@@ -57,6 +59,7 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.tires);
 		this.addChild(this.doors);
 		this.addChild(this.engines);
+        this.addChild(this.item);
 		
 		for(var i=0; i<this.car.req.length; i++){
 			cc.log(this.car.req[i].toString());
@@ -68,6 +71,8 @@ var GameLayer = cc.Layer.extend({
     },
 
     update:function (dt) {
+        this.item.x = this.player.x;
+        this.item.y = this.player.y;
         this.CheckCollisions();
     },
 
@@ -94,11 +99,15 @@ var GameLayer = cc.Layer.extend({
                 cc.log("Not holding anything, and next to car");
             }
             else if (hitObject.tag == "bin") {
-                cc.log("Not holding anything and next to create holding " + hitObject.contents);
+                if (hitObject.contents == "door") this.item.setTexture(res.Door_png);
+                if (hitObject.contents == "tire") this.item.setTexture(res.Tire_png);
+                if (hitObject.contents == "engine") this.item.setTexture(res.Engine_png);
+                cc.log("Not holding anything and next to crate holding " + hitObject.contents);
                 this.player.state = hitObject.contents;
             }
         }
         else if (hitObject.tag == "car") {
+            this.item.setTexture(res.blank);
             cc.log("Holding something, and next to car");
             this.player.state = this.player.nothing;
         }

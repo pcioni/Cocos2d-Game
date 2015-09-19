@@ -9,6 +9,11 @@ var res = {
     Background_png: "res/Background.png",
 	Crate_png: "res/Crate.png",
 
+    blank: "res/blank.png",
+    Door_png: "res/door.png",
+    Tire_png: "res/tire.png",
+    Engine_png: "res/engine.png",
+
     //Sound Resources
     StageTheme_wav: "res/sound/StageTheme.wav",
     GameOver_wav: "res/sound/GameOver.wav",
