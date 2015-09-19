@@ -5,10 +5,12 @@ var Car = cc.Sprite.extend ({
 
         var size = cc.winSize;
 
-        var moveOnScreen = new cc.MoveTo(1.5,cc.p(size.width - 220,78));
-        var moveLeft = new cc.MoveTo(6,cc.p(110,78));
-        var moveUp = new cc.MoveTo(5,cc.p(110,size.height - 78));
-        var moveRight = new cc.MoveTo(8,cc.p(size.width - 110,size.height - 78));
+        this.scale = 1.4;
+
+        var moveOnScreen = new cc.MoveTo(1.5,cc.p(size.width - 220,100));
+        var moveLeft = new cc.MoveTo(6,cc.p(110,100));
+        var moveUp = new cc.MoveTo(5,cc.p(110,size.height - 85));
+        var moveRight = new cc.MoveTo(8,cc.p(size.width - 110,size.height - 85));
         //Add a function that checks to see if you've succeeded or not (point system as well)
 
 

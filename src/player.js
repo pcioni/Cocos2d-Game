@@ -8,7 +8,7 @@ var Player = cc.Sprite.extend ({
         this.RIGHT = false;
         this.ACTION = false;
 
-        this.speed = 5;
+        this.speed = 8;
 
         //this.scale = 0.6;
         this.state = "nothing";
@@ -54,21 +54,19 @@ var Player = cc.Sprite.extend ({
     // make sure to call this.scheduleUpdate() in the constructor
     // to activate this if you want it
     update:function(dt) {
-        if(this.UP)
-        {
-            this.y += this.speed;
+        if(this.UP) {
+            if (this.y < 903 - this.height/2)
+                this.y += this.speed;
         }
-        else if(this.DOWN)
-        {
-            this.y -= this.speed;
+        else if(this.DOWN) {
+            if (this.y > 173 + this.height/2)
+                this.y -= this.speed;
         }
-        if(this.LEFT)
-        {
-            this.x -= this.speed;
+        if(this.LEFT) {
+            if (this.x > 188 + this.width/2)
+                this.x -= this.speed;
         }
         else if(this.RIGHT)
-        {
             this.x += this.speed;
-        }
     }
 });
