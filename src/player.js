@@ -6,15 +6,18 @@ var Player = cc.Sprite.extend ({
         this.DOWN = false;
         this.LEFT = false;
         this.RIGHT = false;
+        
         this.ACTION = false;
 
         this.speed = 5;
 
         //this.scale = 0.6;
 
-        this.NORMAL_STATE = 0;
-        this.HOLDING_STATE = 1;
-        this.state = this.NORMAL_STATE;
+        this.player.state = 0;
+        this.NOTHING = 0;
+        this.ENGINE = 1;
+        this.DOOR = 2;
+        this.TIRE = 3;
 
         this.scheduleUpdate();
 

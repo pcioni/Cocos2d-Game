@@ -35,6 +35,7 @@ var GameLayer = cc.Layer.extend({
         this.addChild(this.player);
         this.addChild(this.car);
 
+        //Player should ALWAYS be in index 0 due to the way CheckCollisions uses this list.
         this.spritelist = [this.player, this.car];
 
 
@@ -50,7 +51,7 @@ var GameLayer = cc.Layer.extend({
     CheckCollisions:function() {
         var i;
         for (i = 0; i < this.spritelist.length; i++) {
-            if (cc.rectIntersectsRect(this.player.getBoundingBox(), this.spritelist[i].getBoundingBox())) {
+            if (cc.rectIntersectsRect(this.spritelist[0].getBoundingBox(), this.spritelist[i].getBoundingBox())) {
                 this.player.setColor(new cc.Color(255, 0, 0));
                 if (this.player.ACTION == true)
                     this.ChangeState(this.spritelist[i]);
@@ -63,10 +64,24 @@ var GameLayer = cc.Layer.extend({
     //hitObject is the object that we've collided with.
     //This function will be a giant chain of if-else statements for each and every object.
     ChangeState:function(hitObject) {
-        if (this.player.state == this.player.NORMAL_STATE) {
-            this.player.state = this.player.HOLDING_STATE;
-            cc.log("Changed state from NORMAL_STATE to HOLDING_STATE)");
+        /* commented to distinguish working code from prototypes
+
+        if (this.player.state == this.player.NOTHING) {
+
         }
+        
+        else if (this.player.state != this.player.NOTHING) {
+            if (this.player.state == this.player.ENGINE) {
+    
+            }
+            if (this.player.state == this.player.DOOR) {
+    
+            }
+            if (this.player.state == this.player.TIRE) {
+    
+            }
+        }
+        */
     }
 });
 
