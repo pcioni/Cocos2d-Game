@@ -1,8 +1,8 @@
 var Car = cc.Sprite.extend ({
     ctor: function () {
         this._super(res.CarBroke1_png);
-
-        this.contents = "";
+		this.tag="car";
+		
 
         var size = cc.winSize;
 
@@ -17,10 +17,27 @@ var Car = cc.Sprite.extend ({
 
         this.runAction(seq);
 
-        //ignore this comment
-
-
-
+		//Creates this.req, and array of everything the car needs
+		this.tuple1=["tire",0];
+		this.tuple2=["door",0];
+		this.tuple3=["engine",0];
+		this.req=[this.tuple1,this.tuple2,this.tuple3];
+		this.paintColors=["red","green","blue"];
+		for(var i=0; i<this.req.length; i++){
+			this.req[i][1]=Math.floor((Math.random()*4));
+		}
+		
+		this.needHammer=Math.floor((Math.random()*10))%2;
+		this.needRench=Math.floor((Math.random()*10))%2;
+		this.paint=this.paintColors[Math.floor((Math.random()*3))];
+		
+		if(this.needHammer==1)
+			this.req.push("Hammer");
+		if(this.needRench==1)
+			this.req.push("Rench");
+		this.req.push(this.paint);
+		/////////////////////////////////////////////////////////
+		
         return true;
     },
     // you can also use the update method, which is called every frame

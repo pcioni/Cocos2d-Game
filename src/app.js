@@ -53,10 +53,13 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.tires);
 		this.addChild(this.doors);
 		this.addChild(this.engines);
-
+		
+		for(var i=0; i<this.car.req.length; i++){
+			cc.log(this.car.req[i].toString());
+		}
 
         this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors];
-
+		
 
         return true;
     },
