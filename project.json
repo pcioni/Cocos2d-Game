@@ -16,6 +16,7 @@
         "src/player.js",
         "src/car.js",
 		"src/crate.js",
-		"src/item.js"
+		"src/item.js",
+		"src/paint.js"
     ]
 }
