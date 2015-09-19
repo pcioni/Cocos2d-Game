@@ -6,7 +6,7 @@ var res = {
     Player_png: "res/Player.png",
     Car_png: "res/Car.png",
     CarBroke1_png: "res/carbroke1.png",
-    Background_png: "res/TestBG1.png",
+    Background_png: "res/StageBackground.png",
 	Crate_png: "res/Crate.png",
 
     //Sound Resources
