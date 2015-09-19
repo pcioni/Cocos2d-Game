@@ -83,24 +83,10 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.tires);
 		this.addChild(this.doors);
 		this.addChild(this.engines);
-<<<<<<< HEAD
 		
 		//prints out what the car needs to the console
 		
 		this.PrintCarReq(this.car.req);
-
-=======
-        this.addChild(this.item);
-
-		//prints out what the car needs
-		for(var i=0; i<this.car.req.length; i++){
-			cc.log(this.car.req[i].toString());
-		}
-		cc.log("needHammer: "+this.car.needHammer);
-		cc.log("needRench: "+this.car.needRench);
-		cc.log(this.car.paint);
->>>>>>> 9a34a91ff25ab4f0587731a09f5ab2a7cd04bfcc
-		//////////////////////////////
 
         this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors,
                             this.blackPaint, this.redPaint, this.whitePaint];
