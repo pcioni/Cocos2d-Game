@@ -11,17 +11,18 @@ var GameLayer = cc.Layer.extend({
     ctor:function () {
         this._super();
         this.scheduleUpdate();
-
-        var size = cc.winSize;
         cc.view.setDesignResolutionSize(1920, 1080, cc.ResolutionPolicy.SHOW_ALL);
+        cc.winSize.width = 1920;
+        cc.winSize.height = 1080;
+        var size = cc.winSize;
         cc.log(size);
 
         this.player = new Player;
-        this.player.x = 100;
-        this.player.y = 100;
+        this.player.x = size.width/2;
+        this.player.y = size.width/2;
 
         this.car = new Car;
-        this.car.x = screen.width/2;
+        this.car.x = size.width;
         this.car.y = 78;
 
         var background = new cc.Sprite(res.Background_png);
@@ -33,7 +34,9 @@ var GameLayer = cc.Layer.extend({
         background.y = size.height / 2;
 
         this.addChild(this.player);
+
         this.addChild(this.car);
+
 
         this.spritelist = [this.player, this.car];
 
