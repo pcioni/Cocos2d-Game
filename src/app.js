@@ -61,9 +61,14 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.engines);
         this.addChild(this.item);
 		
+		//prints out what the car needs
 		for(var i=0; i<this.car.req.length; i++){
 			cc.log(this.car.req[i].toString());
 		}
+		cc.log("needHammer: "+this.car.needHammer);
+		cc.log("needRench: "+this.car.needRench);
+		cc.log(this.car.paint);
+		//////////////////////////////
 
         this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors];
 
@@ -92,7 +97,7 @@ var GameLayer = cc.Layer.extend({
     },
 
     //hitObject is the object that we've collided with.
-    //This function will be a giant chain of if-else statements for each and every object.
+    //This function will be a giant chain of if-else stateme nts for each and every object.
     ChangeState:function(hitObject) {
         if (this.player.state == this.player.nothing) {
             if (hitObject.tag == "car") {
@@ -109,6 +114,16 @@ var GameLayer = cc.Layer.extend({
         else if (hitObject.tag == "car") {
             this.item.setTexture(res.blank);
             cc.log("Holding something, and next to car");
+			
+			for(var i=0; i<this.car.req.length; i++){
+				if(this.player.state==this.car.req[i][0] && this.car.req[i][1]>0)
+				{
+					this.car.req[i][1]=this.car.req[i][1]-1;
+					cc.log(this.car.req[i][0]+" was added to the car.");
+					cc.log(this.car.req[i].toString());
+				}
+			}
+			
             this.player.state = this.player.nothing;
         }
         else {
