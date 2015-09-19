@@ -20,19 +20,32 @@ var Car = cc.Sprite.extend ({
 
         this.runAction(seq);
 
-		//Creates this.req, and array of everything the car needs
+		//Creates this.req, an array of everything the car needs
+		this.req=[];
+		this.tempNum
+		
 		this.tuple1=["tire",0];
 		this.tuple2=["door",0];
 		this.tuple3=["engine",0];
-		this.req=[this.tuple1,this.tuple2,this.tuple3];
-		this.paintColors=["red","green","blue"];
-		for(var i=0; i<this.req.length; i++){
-			this.req[i][1]=Math.floor((Math.random()*4));
+		this.parts=[this.tuple1,this.tuple2,this.tuple3];
+		for(var i=0; i<this.parts.length; i++){
+			this.parts[i][1]=Math.floor((Math.random()*4));
 		}
 		
-		this.needHammer=Math.floor((Math.random()*10))%2;
-		this.needRench=Math.floor((Math.random()*10))%2;
+		this.req.push(this.parts);
+		
+		if(Math.floor((Math.random()*10))%2==1)
+			this.req.push("Hammer");
+		
+		if(Math.floor((Math.random()*10))%2==1)
+			this.req.push("Blowtorch");
+		
+		if(Math.floor((Math.random()*10))%2==1)
+			this.req.push("Wrench");
+		
+		this.paintColors=["redPaint","whitePaint","blackPaint"];
 		this.paint=this.paintColors[Math.floor((Math.random()*3))];
+		this.req.push(this.paint);
 		/////////////////////////////////////////////////////////
 		
         return true;

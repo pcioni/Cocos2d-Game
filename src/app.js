@@ -58,13 +58,10 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.doors);
 		this.addChild(this.engines);
 		
-		//prints out what the car needs
-		for(var i=0; i<this.car.req.length; i++){
-			cc.log(this.car.req[i].toString());
-		}
-		cc.log("needHammer: "+this.car.needHammer);
-		cc.log("needRench: "+this.car.needRench);
-		cc.log(this.car.paint);
+		//prints out what the car needs to the console
+		
+		this.PrintCarReq(this.car.req);
+
 		//////////////////////////////
 
         this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors];
@@ -106,12 +103,24 @@ var GameLayer = cc.Layer.extend({
         else if (hitObject.tag == "car") {
             cc.log("Holding something, and next to car");
 			
+			//checks if the car needs held object, if so -1 from the car needing it
 			for(var i=0; i<this.car.req.length; i++){
-				if(this.player.state==this.car.req[i][0] && this.car.req[i][1]>0)
-				{
-					this.car.req[i][1]=this.car.req[i][1]-1;
-					cc.log(this.car.req[i][0]+" was added to the car.");
-					cc.log(this.car.req[i].toString());
+				if(i==0){
+					for(var j=0; j<this.car.req[0].length; j++){
+						if(this.player.state==this.car.req[0][j][0] && this.car.req[0][j][1]>0){
+							this.car.req[0][j][1]=this.car.req[0][j][1]-1;
+							cc.log(this.car.req[0][j][0]+" added to car");
+							this.PrintCarReq(this.car.req);
+						}else{
+							//do something if the car doesn't
+							//need what you have
+							//do we still want the player to drop the item?
+						}
+					}
+				}else{
+					if(this.player.state==this.car.req[i]){
+						cc.log(this.car.req[i]+" added to car");
+					}
 				}
 			}
 			
@@ -120,7 +129,23 @@ var GameLayer = cc.Layer.extend({
         else {
             cc.log("Already holding something and not next to car");
         }
-    }
+    },
+	
+	PrintCarReq:function(req){
+		
+		for(var i=0; i<req.length; i++){
+			if(i==0){
+				for(var j=0; j<req[0].length; j++){
+					if(req[0][j][1]>0)
+						cc.log(req[0][j].toString());
+				}
+			}else{
+				cc.log(req[i]);
+			}
+		}
+		
+	}
+	
 });
 
 var MainScene = cc.Scene.extend({
