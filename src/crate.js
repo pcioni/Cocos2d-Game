@@ -3,6 +3,8 @@ var Crate = cc.Sprite.extend ({
         this._super(res.Crate_png);
         this.tag = "bin";
 
+        this.contents = ""
+
         return true;
     },
     // you can also use the update method, which is called every frame

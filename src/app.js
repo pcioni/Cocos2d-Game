@@ -54,9 +54,7 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.doors);
 		this.addChild(this.engines);
 
-
         this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors];
-
 
         return true;
     },
@@ -71,22 +69,33 @@ var GameLayer = cc.Layer.extend({
         var i;
         for (i = 1; i < this.spritelist.length; i++) {
             if (cc.rectIntersectsRect(this.player.getBoundingBox(), this.spritelist[i].getBoundingBox())) {
-                this.player.setColor(new cc.Color(255, 0, 0));
-				cc.log("hit")
                 if (this.player.ACTION == true)
                     this.ChangeState(this.spritelist[i]);
             }
             else
                 this.player.setColor(new cc.Color(255, 255, 255));
         }
+
     },
 
     //hitObject is the object that we've collided with.
     //This function will be a giant chain of if-else statements for each and every object.
     ChangeState:function(hitObject) {
-        if (this.player.state == this.player.NORMAL_STATE) {
-            this.player.state = this.player.HOLDING_STATE;
-            cc.log("Changed state from NORMAL_STATE to HOLDING_STATE)");
+        if (this.player.state == this.player.nothing) {
+            if (hitObject.tag == "car") {
+                cc.log("Not holding anything, and next to car");
+            }
+            else if (hitObject.tag == "bin") {
+                cc.log("Not holding anything and next to create holding " + hitObject.contents);
+                this.player.state = hitObject.contents;
+            }
+        }
+        else if (hitObject.tag == "car") {
+            cc.log("Holding something, and next to car");
+            this.player.state = this.player.nothing;
+        }
+        else {
+            cc.log("Already holding something and not next to car");
         }
     }
 });

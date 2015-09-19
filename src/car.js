@@ -1,8 +1,7 @@
 var Car = cc.Sprite.extend ({
     ctor: function () {
         this._super(res.CarBroke1_png);
-
-        this.contents = "";
+        this.tag = "car";
 
         var size = cc.winSize;
 
