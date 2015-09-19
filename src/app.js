@@ -21,15 +21,18 @@ var GameLayer = cc.Layer.extend({
         var size = cc.winSize;
         cc.log(size);
 
-        //Paint children
-        this.item = new Item;
-        this.blackPaint = new Item;
-        this.redPaint = new Item;
-        this.whitePaint = new Item;
 
-        this.blackPaint.color = "black";
-        this.redPaint.color = "red";
-        this.whitePaint.color = "white";
+
+        this.item = new Item;
+
+        //Paint children
+        this.blackPaint = new Paint;
+        this.redPaint = new Paint;
+        this.whitePaint = new Paint;
+
+        this.blackPaint.ccolor = "black";
+        this.redPaint.ccolor = "red";
+        this.whitePaint.ccolor = "white";
 
         this.blackPaint.setTexture(res.blackPaint_png);
         this.redPaint.setTexture(res.redPaint_png);
@@ -130,23 +133,23 @@ var GameLayer = cc.Layer.extend({
                 cc.log("Not holding anything and next to crate holding " + hitObject.contents);
                 this.player.state = hitObject.contents;
             }
-            else if (hitObject.tag == "paint"){
-                if (hitObject.color == "white") {
+            else if (hitObject.tag == "paint") {
+                if (hitObject.ccolor == "white") {
                     hitObject.setTexture(res.paintBlank);
                     this.item.setTexture(res.whitePaint_png);
                     this.player.state = "whitePaint";
                 }
-                if (hitObject.color == "black") {
+                if (hitObject.ccolor == "black") {
                     hitObject.setTexture(res.paintBlank);
                     this.item.setTexture(res.blackPaint_png);
                     this.player.state = "blackPaint";
                 }
-                if (hitObject.color == "red") {
+                if (hitObject.ccolor == "red") {
                     hitObject.setTexture(res.paintBlank);
                     this.item.setTexture(res.redPaint_png);
                     this.player.state = "redPaint";
                 }
-                cc.log("picked up paint color " + hitObject.color)
+                cc.log("picked up paint color " + hitObject.ccolor)
             }
         }
         else if (hitObject.tag == "car") {

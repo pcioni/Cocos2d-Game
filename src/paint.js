@@ -1,8 +1,8 @@
-var Item = cc.Sprite.extend ({
+var Paint = cc.Sprite.extend ({
     ctor: function () {
         this._super();
         this.tag = "paint";
-        this.color = "";
+        this.ccolor = "";
 
         //this.scheduleUpdate();
 
