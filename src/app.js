@@ -69,12 +69,12 @@ var GameLayer = cc.Layer.extend({
         this.player.y = size.height/2;
 		
 		//Car child
-        this.car = new Car;
+        this.car = new Car(4);
         this.car.x = size.width;
         this.car.y = 100;
 		this.car.state="broken";
 		this.car.setTexture(res.CarBroke1_png);
-
+		
         //Item children
 		this.doors = new Crate;
         this.doors.contents = "door";
@@ -200,8 +200,12 @@ var GameLayer = cc.Layer.extend({
 			//move set texture to blank so it only effects parts
             this.item.setTexture(res.blank);
             cc.log("Holding something, and next to car");
-			if(this.ComparePartToCar()==true){
+			if(this.ComparePartToCar(this.car)==true){
 				this.player.state = this.player.nothing;
+			}
+			if(this.CheckCarCompletion(this.car.req)==true){
+					this.car.state="repaired";
+					this.car.setTexture(this.car.fixedSprite);
 			}
 			this.player.ACTION=false;
         }
@@ -268,28 +272,24 @@ var GameLayer = cc.Layer.extend({
 		
 	},
 	
-	ComparePartToCar:function(){
+	ComparePartToCar:function(car){
 		
 		
-		for(var i=0; i<this.car.req.length; i++){
+		for(var i=0; i<car.req.length; i++){
 			if(i==0){
-				for(var j=0; j<this.car.req[0].length; j++){
-					if(this.player.state==this.car.req[0][j][0] && this.car.req[0][j][1]>0){
-						this.car.req[0][j][1]=this.car.req[0][j][1]-1;
-						cc.log(this.car.req[0][j][0]+" added to car");
-						this.PrintCarReq(this.car.req);
-						this.CheckCarCompletion();
-						cc.log(this.car.state);
+				for(var j=0; j<car.req[0].length; j++){
+					if(this.player.state==car.req[0][j][0] && car.req[0][j][1]>0){
+						car.req[0][j][1]=car.req[0][j][1]-1;
+						cc.log(car.req[0][j][0]+" added to car");
+						this.PrintCarReq(car.req);
 						return true;
 					}
 				}
 			}else{
-				if(this.player.state==this.car.req[i]){
-					cc.log(this.car.req[i]+" added to car");
-					this.car.req[i]="";
-					this.PrintCarReq(this.car.req);
-					this.CheckCarCompletion();
-					cc.log(this.car.state);
+				if(this.player.state==car.req[i]){
+					cc.log(car.req[i]+" added to car");
+					car.req[i]="";
+					this.PrintCarReq(car.req);
 					return false;
 				}
 			}
@@ -300,20 +300,19 @@ var GameLayer = cc.Layer.extend({
 		
 	},
 	
-	CheckCarCompletion:function(){
-		for(var i=0; i<this.car.req.length; i++){
+	CheckCarCompletion:function(req){
+		for(var i=0; i<req.length; i++){
 			if(i==0){
-				for(var j=0; j<this.car.req[0].length; j++){
-					if(this.car.req[0][j][1]!=0)
+				for(var j=0; j<req[0].length; j++){
+					if(req[0][j][1]!=0)
 						return false;
 				}
 			}else{
-				if(this.car.req[i]!="")
+				if(req[i]!="")
 					return false;
 			}
 		}
-		this.car.state="repaired";
-		this.car.setTexture(this.car.fixedSprite);
+		return true;
 	}
 	
 });
