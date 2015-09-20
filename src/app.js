@@ -43,29 +43,34 @@ var GameLayer = cc.Layer.extend({
         this.whitePaint.y = 450;
         this.redPaint.y = 600;
 
-        //Player children
+        //Player child
         this.player = new Player;
         this.player.x = size.width/2;
         this.player.y = size.height/2;
-
+		
+		//Car child
         this.car = new Car;
         this.car.x = size.width;
         this.car.y = 100;
 		this.car.state="broken";
+		this.car.setTexture(res.CarBroke1_png);
 
         //Item children
 		this.doors = new Crate;
         this.doors.contents = "door";
+		this.doors.setTexture(res.BoxOfDoors_png);
         this.doors.x = size.width/2 - 250;
         this.doors.y = size.height/2;
 
         this.tires = new Crate;
         this.tires.contents = "tire";
+		this.tires.setTexture(res.BoxOfWheels_png);
         this.tires.x = size.width/2;
         this.tires.y = size.height/2;
 
         this.engines = new Crate;
         this.engines.contents = "engine";
+		this.engines.setTexture(res.BoxOfEngines_png);
         this.engines.x = size.width/2 + 250;
         this.engines.y = size.height/2;
 
@@ -235,6 +240,7 @@ var GameLayer = cc.Layer.extend({
 			}
 		}
 		this.car.state="repaired";
+		this.car.setTexture(this.car.fixedSprite);
 	}
 	
 });

@@ -1,6 +1,6 @@
 var Crate = cc.Sprite.extend ({
     ctor: function () {
-        this._super(res.Crate_png);
+        this._super();
         this.tag = "bin";
 		
 		this.contents= "";

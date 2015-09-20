@@ -1,6 +1,6 @@
 var Car = cc.Sprite.extend ({
     ctor: function () {
-        this._super(res.CarBroke1_png);
+        this._super();
 		
 		this.tag="car";
 		this.state="";
@@ -46,9 +46,13 @@ var Car = cc.Sprite.extend ({
 		*/
 		
 		this.paintColors=["redPaint","whitePaint","blackPaint"];
-		this.paint=this.paintColors[Math.floor((Math.random()*3))];
+		this.index=Math.floor((Math.random()*3));
+		this.paint=this.paintColors[this.index];
 		this.req.push(this.paint);
 		/////////////////////////////////////////////////////////
+		
+		this.fixedSpritesList=[res.CarFixedRed_png, res.CarFixedWhite_png, res.CarFixedBlack_png];
+		this.fixedSprite=this.fixedSpritesList[this.index];
 		
         return true;
     },

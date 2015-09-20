@@ -5,6 +5,15 @@ var res = {
     CarBroke1_png: "res/carbroke1.png",
     Background_png: "res/Background.png",
 	Crate_png: "res/Crate.png",
+	CarFixedGray_png: "res/carfinishedGRAY.png",
+	CarFixedBlack_png: "res/carfinishedBLACK.png",
+	CarFixedWhite_png: "res/carfinishedWHITE.png",
+	CarFixedRed_png: "res/carfinishedRED.png",
+	BoxOfDoors_png: "res/abox_ofdoors.png",
+	BoxOfEngines_png: "res/abox_ofengines.png",
+	BoxOfSeats_png: "res/abox_ofseats.png",
+	BoxOfWheels_png: "res/abox_ofwheels.png",
+	
 
     //Paint Resources
     paintBlank: "res/paintBlank.png",
