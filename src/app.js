@@ -21,8 +21,6 @@ var GameLayer = cc.Layer.extend({
         var size = cc.winSize;
         cc.log(size);
 
-
-
         this.item = new Item;
 
         //Paint children
@@ -53,6 +51,7 @@ var GameLayer = cc.Layer.extend({
         this.car = new Car;
         this.car.x = size.width;
         this.car.y = 100;
+		this.car.state="broken";
 
         //Item children
 		this.doors = new Crate;
@@ -84,8 +83,7 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.doors);
 		this.addChild(this.engines);
 		
-		//prints out what the car needs to the console
-		
+		//prints out what the car needs to the console		
 		this.PrintCarReq(this.car.req);
 
         this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors,
@@ -124,7 +122,7 @@ var GameLayer = cc.Layer.extend({
                 if (hitObject.contents == "door") this.item.setTexture(res.Door_png);
                 if (hitObject.contents == "tire") this.item.setTexture(res.Tire_png);
                 if (hitObject.contents == "engine") this.item.setTexture(res.Engine_png);
-                cc.log("Not holding anything and next to crate holding " + hitObject.contents);
+                cc.log("Picked up " + hitObject.contents);
                 this.player.state = hitObject.contents;
             }
             else if (hitObject.tag == "paint") {
@@ -149,33 +147,32 @@ var GameLayer = cc.Layer.extend({
         else if (hitObject.tag == "car") {
             this.item.setTexture(res.blank);
             cc.log("Holding something, and next to car");
-			
-			//checks if the car needs held object, if so -1 from the car needing it
-			for(var i=0; i<this.car.req.length; i++){
-				if(i==0){
-					for(var j=0; j<this.car.req[0].length; j++){
-						if(this.player.state==this.car.req[0][j][0] && this.car.req[0][j][1]>0){
-							this.car.req[0][j][1]=this.car.req[0][j][1]-1;
-							cc.log(this.car.req[0][j][0]+" added to car");
-							this.PrintCarReq(this.car.req);
-						}else{
-							//do something if the car doesn't
-							//need what you have
-							//do we still want the player to drop the item?
-						}
-					}
-				}else{
-					if(this.player.state==this.car.req[i]){
-						cc.log(this.car.req[i]+" added to car");
-					}
-				}
+			if(this.ComparePartToCar()==true){
+				this.player.state = this.player.nothing;
 			}
-			
-            this.player.state = this.player.nothing;
         }
-        else {
-            cc.log("Already holding something and not next to car");
-        }
+		//put down paint in it's original spot
+        else if (hitObject.tag == "paint"){
+			if (hitObject.ccolor == "white") {
+				hitObject.setTexture(res.whitePaint_png);
+				this.item.setTexture(res.blank);
+				this.player.state = this.player.nothing;
+			}
+			if (hitObject.ccolor == "black") {
+				hitObject.setTexture(res.blackPaint_png);
+				this.item.setTexture(res.blank);
+				this.player.state = this.player.nothing;
+			}
+			if (hitObject.ccolor == "red") {
+				hitObject.setTexture(res.redPaint_png);
+				this.item.setTexture(res.blank);
+				this.player.state = this.player.nothing;
+			}
+			cc.log("put down paint color " + hitObject.ccolor)
+		}	
+		
+		cc.log("Already holding something and not next to car");
+        
     },
 	
 	PrintCarReq:function(req){
@@ -186,11 +183,58 @@ var GameLayer = cc.Layer.extend({
 					if(req[0][j][1]>0)
 						cc.log(req[0][j].toString());
 				}
-			}else{
+			}else if(req[i]!=""){
 				cc.log(req[i]);
 			}
 		}
 		
+	},
+	
+	ComparePartToCar:function(){
+		
+		
+		for(var i=0; i<this.car.req.length; i++){
+			if(i==0){
+				for(var j=0; j<this.car.req[0].length; j++){
+					if(this.player.state==this.car.req[0][j][0] && this.car.req[0][j][1]>0){
+						this.car.req[0][j][1]=this.car.req[0][j][1]-1;
+						cc.log(this.car.req[0][j][0]+" added to car");
+						this.PrintCarReq(this.car.req);
+						this.CheckCarCompletion();
+						cc.log(this.car.state);
+						return true;
+					}
+				}
+			}else{
+				if(this.player.state==this.car.req[i]){
+					cc.log(this.car.req[i]+" added to car");
+					this.car.req[i]="";
+					this.PrintCarReq(this.car.req);
+					this.CheckCarCompletion();
+					cc.log(this.car.state);
+					return false;
+				}
+			}
+		}
+		//do something when false?
+		cc.log("RETURN FALSE");
+		return false;
+		
+	},
+	
+	CheckCarCompletion:function(){
+		for(var i=0; i<this.car.req.length; i++){
+			if(i==0){
+				for(var j=0; j<this.car.req[0].length; j++){
+					if(this.car.req[0][j][1]!=0)
+						return false;
+				}
+			}else{
+				if(this.car.req[i]!="")
+					return false;
+			}
+		}
+		this.car.state="repaired";
 	}
 	
 });

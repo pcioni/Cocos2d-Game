@@ -3,7 +3,7 @@ var Car = cc.Sprite.extend ({
         this._super(res.CarBroke1_png);
 		
 		this.tag="car";
-		
+		this.state="";
 
         var size = cc.winSize;
 
@@ -34,6 +34,7 @@ var Car = cc.Sprite.extend ({
 		
 		this.req.push(this.parts);
 		
+		/*
 		if(Math.floor((Math.random()*10))%2==1)
 			this.req.push("Hammer");
 		
@@ -42,6 +43,7 @@ var Car = cc.Sprite.extend ({
 		
 		if(Math.floor((Math.random()*10))%2==1)
 			this.req.push("Wrench");
+		*/
 		
 		this.paintColors=["redPaint","whitePaint","blackPaint"];
 		this.paint=this.paintColors[Math.floor((Math.random()*3))];
