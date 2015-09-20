@@ -113,7 +113,6 @@ var GameLayer = cc.Layer.extend({
                     this.ChangeState(this.spritelist[i]);
             }
         }
-
     },
 
     //hitObject is the object that we've collided with.
@@ -122,6 +121,7 @@ var GameLayer = cc.Layer.extend({
         if (this.player.state == this.player.nothing) {
             if (hitObject.tag == "car") {
                 cc.log("Not holding anything, and next to car");
+				this.player.ACTION=false;
             }
             else if (hitObject.tag == "bin") {
                 if (hitObject.contents == "door") this.item.setTexture(res.Door_png);
@@ -129,6 +129,7 @@ var GameLayer = cc.Layer.extend({
                 if (hitObject.contents == "engine") this.item.setTexture(res.Engine_png);
                 cc.log("Picked up " + hitObject.contents);
                 this.player.state = hitObject.contents;
+				this.player.ACTION=false;
             }
             else if (hitObject.tag == "paint") {
                 if (hitObject.ccolor == "white") {
@@ -147,6 +148,7 @@ var GameLayer = cc.Layer.extend({
                     this.player.state = "redPaint";
                 }
                 cc.log("picked up paint color " + hitObject.ccolor)
+				this.player.ACTION=false;
             }
         }
         else if (hitObject.tag == "car") {
@@ -155,6 +157,7 @@ var GameLayer = cc.Layer.extend({
 			if(this.ComparePartToCar()==true){
 				this.player.state = this.player.nothing;
 			}
+			this.player.ACTION=false;
         }
 		//put down paint in it's original spot
         else if (hitObject.tag == "paint"){
@@ -174,9 +177,11 @@ var GameLayer = cc.Layer.extend({
 				this.player.state = this.player.nothing;
 			}
 			cc.log("put down paint color " + hitObject.ccolor)
+			this.player.ACTION=false;
 		}	
 		
 		cc.log("Already holding something and not next to car");
+		this.player.ACTION=false;
         
     },
 	

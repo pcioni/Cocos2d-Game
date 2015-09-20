@@ -32,7 +32,7 @@ var Player = cc.Sprite.extend ({
                     else if(key == 65) this.LEFT = true;
                     else if(key == 83) this.DOWN = true;
                     else if(key == 68) this.RIGHT = true;
-                    else if (key == 69 || key == 32) this.ACTION = true;
+                    //else if(key == 69 || key == 32) this.ACTION = true;
                     //cc.log("Key pressed: " + key.toString());
                 }.bind(this),
                 onKeyReleased: function(key, event)
@@ -42,7 +42,7 @@ var Player = cc.Sprite.extend ({
                     else if(key == 65) this.LEFT = false;
                     else if(key == 83) this.DOWN = false;
                     else if(key == 68) this.RIGHT = false;
-                    else if (key == 69 || key == 32) this.ACTION = false;
+                    else if (key == 69 || key == 32) this.ACTION = true;
                     //cc.log("Key Released: " + key.toString());
                 }.bind(this)
             }),this);
