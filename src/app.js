@@ -42,6 +42,26 @@ var GameLayer = cc.Layer.extend({
         this.blackPaint.y = 300;
         this.whitePaint.y = 450;
         this.redPaint.y = 600;
+		
+		//tools children
+		this.hammer = new Tool;
+		this.wrench = new Tool;
+		this.blowtorch = new Tool;
+		
+		this.hammer.toolType = "hammer";
+		this.wrench.toolType = "wrench";
+		this.blowtorch.toolType = "blowtorch";
+		
+        this.hammer.setTexture(res.HammerSitting_png);
+		this.wrench.setTexture(res.WrenchSitting_png);
+		this.blowtorch.setTexture(res.BlowTorchSitting_png);
+		
+        this.hammer.x = 450;
+        this.wrench.x = 450;
+        this.blowtorch.x = 450;
+        this.hammer.y = 300;
+        this.wrench.y = 450;
+        this.blowtorch.y = 600;
 
         //Player child
         this.player = new Player;
@@ -73,11 +93,14 @@ var GameLayer = cc.Layer.extend({
 		this.engines.setTexture(res.BoxOfEngines_png);
         this.engines.x = size.width/2 + 250;
         this.engines.y = size.height/2;
+		
 
+		//background child
         var background = new cc.Sprite(res.Background_png);
         background.x = size.width / 2;
         background.y = size.height / 2;
 
+		//add everything as a child
         this.addChild(background);
         this.addChild(this.blackPaint);
         this.addChild(this.redPaint);
@@ -87,12 +110,16 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.tires);
 		this.addChild(this.doors);
 		this.addChild(this.engines);
+		this.addChild(this.hammer);
+		this.addChild(this.wrench);
+		this.addChild(this.blowtorch);
 		
 		//prints out what the car needs to the console		
 		this.PrintCarReq(this.car.req);
 
         this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors,
-                            this.blackPaint, this.redPaint, this.whitePaint];
+                            this.blackPaint, this.redPaint, this.whitePaint, 
+							this.hammer, this.wrench, this.blowtorch];
 
         return true;
     },
@@ -122,6 +149,7 @@ var GameLayer = cc.Layer.extend({
             if (hitObject.tag == "car") {
                 cc.log("Not holding anything, and next to car");
 				this.player.ACTION=false;
+				
             }
             else if (hitObject.tag == "bin") {
                 if (hitObject.contents == "door") this.item.setTexture(res.Door_png);
@@ -130,6 +158,7 @@ var GameLayer = cc.Layer.extend({
                 cc.log("Picked up " + hitObject.contents);
                 this.player.state = hitObject.contents;
 				this.player.ACTION=false;
+				
             }
             else if (hitObject.tag == "paint") {
                 if (hitObject.ccolor == "white") {
@@ -149,9 +178,26 @@ var GameLayer = cc.Layer.extend({
                 }
                 cc.log("picked up paint color " + hitObject.ccolor)
 				this.player.ACTION=false;
-            }
+				
+            }else if (hitObject.tag == "tool"){
+				if(hitObject.toolType=="hammer"){
+					hitObject.setTexture(res.paintBlank);
+					this.item.setTexture(res.HammerSitting_png);
+					this.player.state=hitObject.toolType;
+				}else if(hitObject.toolType=="wrench"){
+					hitObject.setTexture(res.paintBlank);
+					this.item.setTexture(res.WrenchSitting_png);
+					this.player.state=hitObject.toolType;
+				}else if(hitObject.toolType=="blowtorch"){
+					hitObject.setTexture(res.paintBlank);
+					this.item.setTexture(res.BlowTorchSitting_png);
+					this.player.state=hitObject.toolType;
+				}
+				this.player.ACTION=false;
+			}
         }
         else if (hitObject.tag == "car") {
+			//move set texture to blank so it only effects parts
             this.item.setTexture(res.blank);
             cc.log("Holding something, and next to car");
 			if(this.ComparePartToCar()==true){
@@ -178,7 +224,29 @@ var GameLayer = cc.Layer.extend({
 			}
 			cc.log("put down paint color " + hitObject.ccolor)
 			this.player.ACTION=false;
-		}	
+		}
+		//put down tool in it's original spot
+		else if (hitObject.tag == "tool"){
+			
+			if (hitObject.toolType == "hammer") {
+				hitObject.setTexture(res.HammerSitting_png);
+				this.item.setTexture(res.blank);
+				this.player.state = this.player.nothing;
+			}
+			if (hitObject.toolType == "wrench") {
+				hitObject.setTexture(res.WrenchSitting_png);
+				this.item.setTexture(res.blank);
+				this.player.state = this.player.nothing;
+			}
+			if (hitObject.toolType == "blowtorch") {
+				hitObject.setTexture(res.BlowTorchSitting_png);
+				this.item.setTexture(res.blank);
+				this.player.state = this.player.nothing;
+			}
+			cc.log("put down tool " + hitObject.toolType)
+			this.player.ACTION=false;
+			
+		}
 		
 		cc.log("Already holding something and not next to car");
 		this.player.ACTION=false;

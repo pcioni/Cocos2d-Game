@@ -13,7 +13,9 @@ var res = {
 	BoxOfEngines_png: "res/abox_ofengines.png",
 	BoxOfSeats_png: "res/abox_ofseats.png",
 	BoxOfWheels_png: "res/abox_ofwheels.png",
-	
+	BlowTorchSitting_png: "res/blowtorchsitting.png",
+	HammerSitting_png: "res/hammersitting.png",
+	WrenchSitting_png: "res/wrenchsitting.png",
 
     //Paint Resources
     paintBlank: "res/paintBlank.png",

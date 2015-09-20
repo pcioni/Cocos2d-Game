@@ -17,6 +17,7 @@
         "src/car.js",
 		"src/crate.js",
 		"src/item.js",
-		"src/paint.js"
+		"src/paint.js",
+		"src/tools.js"
     ]
 }
