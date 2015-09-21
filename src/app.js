@@ -267,7 +267,7 @@ var GameLayer = cc.Layer.extend({
 			cc.log("Could not put down tool");
 
 		}
-		else if(hitObject.tag == "trash") {
+		else if(hitObject.tag == "trash" && this.item.tag != "perm") {
 			this.player.state =this.player.nothing;
 			this.item.setTexture((res.blank));
 			cc.log("THREW IT AWAY");

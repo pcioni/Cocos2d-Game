@@ -4,6 +4,7 @@ var Trash = cc.Sprite.extend ({
 
         this.tag="trash";
 
+        this.scale = .75;
         return true;
     },
 
