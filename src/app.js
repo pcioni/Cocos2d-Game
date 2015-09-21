@@ -209,14 +209,19 @@ var GameLayer = cc.Layer.extend({
         }
         else if (hitObject.tag == "car") {
 			//move set texture to blank so it only effects parts
-			if (this.item.tag != "perm") {
-				cc.log(this.item.tag);
-				this.item.setTexture(res.blank);
-			}
+
             //cc.log("Holding something, and next to car");
-			if(this.ComparePartToCar(hitObject)==true){
+			if (this.ComparePartToCar(hitObject)==true){
 				this.player.state = this.player.nothing;
+				if (this.item.tag != "perm")
+					this.item.setTexture(res.blank);
 			}
+			else if (this.ComparePartToCar(hitObject) == false)
+				if (this.item.tag != "perm") {
+					this.item.setTexture(res.blank);
+					this.player.state = this.player.nothing;
+				}
+				//ADD SCORE DEDUCTION HERE
 			if(this.CheckCarCompletion(hitObject.req)==true){
 					hitObject.state="repaired";
 					hitObject.setTexture(hitObject.fixedSprite);
@@ -275,7 +280,6 @@ var GameLayer = cc.Layer.extend({
 
 		this.player.ACTION=false;
 		
-		
 		cc.log("Already holding something and not next to car");
 		this.player.ACTION=false;
         
@@ -297,8 +301,6 @@ var GameLayer = cc.Layer.extend({
 	},
 	
 	ComparePartToCar:function(car){
-		
-		
 		for(var i=0; i<car.req.length; i++){
 			if(i==0){
 				for(var j=0; j<car.req[0].length; j++){
