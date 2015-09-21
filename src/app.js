@@ -160,9 +160,16 @@ var GameLayer = cc.Layer.extend({
             }
 			
 			if(this.spritelist[i].tag=="car" && this.spritelist[i].x>this.size.width){
+				if(this.spritelist[i].state=="broken"){
+					this.player.lives=this.player.lives-1;
+				}
 				this.spritelist.splice(i,1);
 				i--;
 				cc.log("THIS IS NO LONGER IN SPRITELIST");
+				cc.log("lives: "+this.player.lives);
+				if(this.player.lives==0){
+					cc.director.runScene(new GameOverScene());
+				}
 			}
         }
 			

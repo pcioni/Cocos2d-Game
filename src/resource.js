@@ -17,6 +17,7 @@ var res = {
 	HammerSitting_png: "res/hammersitting.png",
 	WrenchSitting_png: "res/wrenchsitting.png",
 	Trash_png: "res/Trash.png",
+	GameOver_png: "res/gameovah.png",
     ItemBubble_png: "res/Itembubble.png",
 
     //the rat, lol

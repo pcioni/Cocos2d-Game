@@ -20,6 +20,11 @@
 		"src/paint.js",
 		"src/tools.js",
 		"src/trash.js",
+<<<<<<< HEAD
 		"src/rat.js"
+=======
+		"scr/carpopup.js",
+		"src/GameOverScene.js"
+>>>>>>> 16efb424102ecb24981709566f80c0b420d3a2cc
     ]
 }

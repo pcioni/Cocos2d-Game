@@ -9,6 +9,7 @@ var Player = cc.Sprite.extend ({
         this.ACTION = false;
 
         this.speed = 12;
+		this.lives=3;
 
         //this.scale = 0.6;
         this.state = "nothing";
