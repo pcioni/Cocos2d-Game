@@ -20,6 +20,7 @@
 		"src/paint.js",
 		"src/tools.js",
 		"src/trash.js",
-		"scr/carpopup.js"
+		"scr/carpopup.js",
+		"src/GameOverScene.js"
     ]
 }
