@@ -12,6 +12,8 @@ var GameLayer = cc.Layer.extend({
         this.scheduleUpdate();
 
         this.audio = cc.audioEngine; //when using anything with audio in app.js, put audio. in front of it
+
+		//TODO: UNCOMMENT THIS MUSIC
         //this.audio.playMusic(res.StageTheme_wav,true); //plays the stage theme
 
         cc.view.setDesignResolutionSize(1920, 1080, cc.ResolutionPolicy.SHOW_ALL);

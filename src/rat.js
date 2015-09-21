@@ -5,7 +5,7 @@ var Rat = cc.Sprite.extend ({
 
         this.tag = "rat";
         this.speed = 7;
-        this.schedule(this.randomWalk, 0.5);
+        this.schedule(this.randomWalk, 0.25);
 
         this.dirs = ["up", "down", "left", "right"];
         this.direction = "";
@@ -14,25 +14,27 @@ var Rat = cc.Sprite.extend ({
     },
 
     randomWalk:function() {
-        var num = Math.floor((Math.random()*4));
+        var num = Math.floor((Math.random()*100)) % 4;
         this.direction = this.dirs[num];
     },
 
     update:function(dt) {
         if(this.direction == "up") {
-            if (this.y < 903 - this.height/2)
+            if (this.y < 835 - this.height/2)
                 this.y += this.speed;
         }
         else if(this.direction == "down") {
-            if (this.y > 173 + this.height/2)
+            if (this.y > 200 + this.height/2)
                 this.y -= this.speed;
         }
         if(this.direction == "left") {
-            if (this.x > 188 + this.width/2)
+            this.flippedX = 0;
+            if (this.x > 200 + this.width/2)
                 this.x -= this.speed;
         }
         else if(this.direction == "right"){
-            if (this.x < 1920 - this.width/2)
+            this.flippedX = 180;
+            if (this.x < 1800 - this.width/2)
                 this.x += this.speed;
         }
     }
