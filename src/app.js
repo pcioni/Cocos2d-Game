@@ -224,42 +224,47 @@ var GameLayer = cc.Layer.extend({
         }
 		//put down paint in it's original spot
         else if (hitObject.tag == "paint"){
-			if (hitObject.ccolor == "white") {
+			if (hitObject.ccolor == "white" && this.item.getTexture().url == res.whitePaint_png) {
 				hitObject.setTexture(res.whitePaint_png);
 				this.item.setTexture(res.blank);
 				this.player.state = this.player.nothing;
+				cc.log("Put down paint color " + hitObject.ccolor);
 			}
-			if (hitObject.ccolor == "black") {
+			if (hitObject.ccolor == "black" && this.item.getTexture().url == res.blackPaint_png) {
 				hitObject.setTexture(res.blackPaint_png);
 				this.item.setTexture(res.blank);
 				this.player.state = this.player.nothing;
+				cc.log("Put down paint color " + hitObject.ccolor);
 			}
-			if (hitObject.ccolor == "red") {
+			if (hitObject.ccolor == "red" && this.item.getTexture().url == res.redPaint_png) {
 				hitObject.setTexture(res.redPaint_png);
 				this.item.setTexture(res.blank);
 				this.player.state = this.player.nothing;
+				cc.log("Put down paint color " + hitObject.ccolor);
 			}
-			cc.log("put down paint color " + hitObject.ccolor);
+			cc.log("Could not put down paint color");
 		}
 		//put down tool in it's original spot
-		else if (hitObject.tag == "tool"){
-			
-			if (hitObject.toolType == "hammer") {
+		else if (hitObject.tag == "tool") {
+			if (hitObject.toolType == "hammer" && this.item.getTexture().url == res.HammerSitting_png ) {
 				hitObject.setTexture(res.HammerSitting_png);
 				this.item.setTexture(res.blank);
 				this.player.state = this.player.nothing;
+				cc.log("Put down paint color " + hitObject.toolType);
 			}
-			if (hitObject.toolType == "wrench") {
+			if (hitObject.toolType == "wrench" && this.item.getTexture().url == res.WrenchSitting_png) {
 				hitObject.setTexture(res.WrenchSitting_png);
 				this.item.setTexture(res.blank);
 				this.player.state = this.player.nothing;
+				cc.log("Put down paint color " + hitObject.toolType);
 			}
-			if (hitObject.toolType == "blowtorch") {
+			if (hitObject.toolType == "blowtorch" && this.item.getTexture().url == res.BlowTorchSitting_png) {
 				hitObject.setTexture(res.BlowTorchSitting_png);
 				this.item.setTexture(res.blank);
 				this.player.state = this.player.nothing;
+				cc.log("Put down paint color " + hitObject.toolType);
 			}
-			cc.log("put down tool " + hitObject.toolType);
+			cc.log("Could not put down tool");
 
 		}
 		else if(hitObject.tag == "trash") {
