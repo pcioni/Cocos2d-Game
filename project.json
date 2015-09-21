@@ -18,6 +18,7 @@
 		"src/crate.js",
 		"src/item.js",
 		"src/paint.js",
-		"src/tools.js"
+		"src/tools.js",
+		"src/trash.js"
     ]
 }

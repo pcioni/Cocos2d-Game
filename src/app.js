@@ -18,8 +18,8 @@ var GameLayer = cc.Layer.extend({
         cc.view.setDesignResolutionSize(1920, 1080, cc.ResolutionPolicy.SHOW_ALL);
         cc.winSize.width = 1920;
         cc.winSize.height = 1080;
-        var size = cc.winSize;
-        cc.log(size);
+        this.size = cc.winSize;
+        cc.log(this.size);
 
         this.item = new Item;
 
@@ -65,40 +65,40 @@ var GameLayer = cc.Layer.extend({
 
         //Player child
         this.player = new Player;
-        this.player.x = size.width/2;
-        this.player.y = size.height/2;
-		
-		//Car child
-        this.car = new Car(4);
-        this.car.x = size.width;
-        this.car.y = 100;
-		this.car.state="broken";
-		this.car.setTexture(res.CarBroke1_png);
+        this.player.x = this.size.width/2;
+        this.player.y = this.size.height/2;
 		
         //Item children
 		this.doors = new Crate;
         this.doors.contents = "door";
 		this.doors.setTexture(res.BoxOfDoors_png);
-        this.doors.x = size.width/2 - 250;
-        this.doors.y = size.height/2;
+        this.doors.x = this.size.width/2 - 250;
+        this.doors.y = this.size.height/2;
 
         this.tires = new Crate;
         this.tires.contents = "tire";
 		this.tires.setTexture(res.BoxOfWheels_png);
-        this.tires.x = size.width/2;
-        this.tires.y = size.height/2;
+        this.tires.x = this.size.width/2;
+        this.tires.y = this.size.height/2;
 
         this.engines = new Crate;
         this.engines.contents = "engine";
 		this.engines.setTexture(res.BoxOfEngines_png);
-        this.engines.x = size.width/2 + 250;
-        this.engines.y = size.height/2;
+        this.engines.x = this.size.width/2 + 250;
+        this.engines.y = this.size.height/2;
 		
-
 		//background child
         var background = new cc.Sprite(res.Background_png);
-        background.x = size.width / 2;
-        background.y = size.height / 2;
+        background.x = this.size.width / 2;
+        background.y = this.size.height / 2;
+		
+		/*
+		//trash child
+		this.trash=new Trash;
+		this.trash.setTexture(res.Trash_png);
+		this.trash.x=this.size.width/2;
+		this.trash.y=(this.size.heights/2) + 5;
+		*/
 
 		//add everything as a child
         this.addChild(background);
@@ -106,21 +106,29 @@ var GameLayer = cc.Layer.extend({
         this.addChild(this.redPaint);
         this.addChild(this.whitePaint);
         this.addChild(this.player);
-        this.addChild(this.car);
 		this.addChild(this.tires);
 		this.addChild(this.doors);
 		this.addChild(this.engines);
 		this.addChild(this.hammer);
 		this.addChild(this.wrench);
 		this.addChild(this.blowtorch);
+		//this.addChild(this.trash);
+		
 		
 		//prints out what the car needs to the console		
-		this.PrintCarReq(this.car.req);
+		//this.PrintCarReq(this.car.req);
 
-        this.spritelist = [this.player, this.car, this.engines, this.tires, this.doors,
+		//took out this.car
+		
+        this.spritelist = [this.player, this.engines, this.tires, this.doors,
                             this.blackPaint, this.redPaint, this.whitePaint, 
 							this.hammer, this.wrench, this.blowtorch];
-
+		
+		//this.spawn=this.SpawnNewCar();
+		
+		//window.setInterval(this.SpawnNewCar, 1000);
+		this.SpawnNewCar();
+		this.schedule(this.SpawnNewCar, 10.0);
         return true;
     },
 
@@ -129,17 +137,37 @@ var GameLayer = cc.Layer.extend({
         this.item.y = this.player.y;
         this.CheckCollisions();
     },
+	
+	SpawnNewCar:function(){
+		
+		this.spritelist.push(new Car(4));
+		this.spritelist[this.spritelist.length-1].x=this.size.width;
+		this.spritelist[this.spritelist.length-1].y=100;
+		this.spritelist[this.spritelist.length-1].state="broken";
+		this.spritelist[this.spritelist.length-1].setTexture(res.CarBroke1_png);
+		this.addChild(this.spritelist[this.spritelist.length-1]);
+		this.PrintCarReq(this.spritelist[this.spritelist.length-1].req);
+	},
 
     //check for collision
     //Calls ChangeState if we collide with something, and also handles if the ACTION key is hit.
     CheckCollisions:function() {
         var i;
         for (i = 1; i < this.spritelist.length; i++) {
+			//check for collision
             if (cc.rectIntersectsRect(this.player.getBoundingBox(), this.spritelist[i].getBoundingBox())) {
-                if (this.player.ACTION == true)
+                if (this.player.ACTION == true){
                     this.ChangeState(this.spritelist[i]);
+				}
             }
+			
+			if(this.spritelist[i].tag=="car" && this.spritelist[i].x>this.size.width){
+				this.spritelist.splice(i,1);
+				i--;
+				cc.log("THIS IS NO LONGER IN SPRITELIST");
+			}
         }
+			
     },
 
     //hitObject is the object that we've collided with.
@@ -200,12 +228,12 @@ var GameLayer = cc.Layer.extend({
 			//move set texture to blank so it only effects parts
             this.item.setTexture(res.blank);
             cc.log("Holding something, and next to car");
-			if(this.ComparePartToCar(this.car)==true){
+			if(this.ComparePartToCar(hitObject)==true){
 				this.player.state = this.player.nothing;
 			}
-			if(this.CheckCarCompletion(this.car.req)==true){
-					this.car.state="repaired";
-					this.car.setTexture(this.car.fixedSprite);
+			if(this.CheckCarCompletion(hitObject.req)==true){
+					hitObject.state="repaired";
+					hitObject.setTexture(hitObject.fixedSprite);
 			}
 			this.player.ACTION=false;
         }
@@ -250,7 +278,14 @@ var GameLayer = cc.Layer.extend({
 			cc.log("put down tool " + hitObject.toolType)
 			this.player.ACTION=false;
 			
+		/*
+		}else if(hitObject.tag=="trash"){
+			this.player.state=this.player.nothing;
+			this.player.ACTION=false;
+			cc.log("THREW IT AWAY");
+			*/
 		}
+		
 		
 		cc.log("Already holding something and not next to car");
 		this.player.ACTION=false;

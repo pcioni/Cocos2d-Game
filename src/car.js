@@ -5,21 +5,24 @@ var Car = cc.Sprite.extend ({
 		this.tag="car";
 		this.state="";
 
+		cc.winSize.width = 1920;
+        cc.winSize.height = 1080;
         var size = cc.winSize;
 
         this.scale = 1.4;
 		
 		this.difficulty=d;
-		cc.log(this.difficulty);
 
         var moveOnScreen = new cc.MoveTo(1.5,cc.p(size.width - 220,100));
         var moveLeft = new cc.MoveTo(6,cc.p(110,100));
         var moveUp = new cc.MoveTo(5,cc.p(110,size.height - 85));
         var moveRight = new cc.MoveTo(8,cc.p(size.width - 110,size.height - 85));
+		var moveOffScreen = new cc.MoveTo(1.5,cc.p(size.width+400,size.height - 85))
         //Add a function that checks to see if you've succeeded or not (point system as well)
 
 
-        var seq = new cc.Sequence(moveOnScreen,cc.delayTime(2),moveLeft,moveUp,moveRight);
+        var seq = new cc.Sequence(moveOnScreen,cc.delayTime(2),moveLeft,moveUp,moveRight,
+									cc.delayTime(2), moveOffScreen);
 
         this.runAction(seq);
 
@@ -27,7 +30,6 @@ var Car = cc.Sprite.extend ({
 		this.req=[];
 		var tempNum=0;
 		var diff=this.difficulty;
-		cc.log(diff);
 		
 		this.tuple1=["tire",0];
 		this.tuple2=["door",0];

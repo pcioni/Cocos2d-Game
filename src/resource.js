@@ -16,6 +16,7 @@ var res = {
 	BlowTorchSitting_png: "res/blowtorchsitting.png",
 	HammerSitting_png: "res/hammersitting.png",
 	WrenchSitting_png: "res/wrenchsitting.png",
+	Trash_png: "res/Trash.png",
 
     //Paint Resources
     paintBlank: "res/paintBlank.png",
