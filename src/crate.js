@@ -5,6 +5,8 @@ var Crate = cc.Sprite.extend ({
 		
 		this.contents= "";
 
+        this.scale = 1.2;
+
         return true;
     },
     // you can also use the update method, which is called every frame

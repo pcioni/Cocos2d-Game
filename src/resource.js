@@ -17,7 +17,11 @@ var res = {
 	HammerSitting_png: "res/hammersitting.png",
 	WrenchSitting_png: "res/wrenchsitting.png",
 	Trash_png: "res/Trash.png",
+<<<<<<< HEAD
 	GameOver_png: "res/gameovah.png",
+=======
+    ItemBubble_png: "res/Itembubble.png",
+>>>>>>> 658c19de3916b5819d3340c4ff0cdfac7845fb93
 
     //Paint Resources
     paintBlank: "res/paintBlank.png",
