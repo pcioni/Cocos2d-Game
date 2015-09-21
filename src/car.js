@@ -71,6 +71,12 @@ var Car = cc.Sprite.extend ({
 			this.req.push(this.paint);
 			diff=diff-1;
 		}
+		var labeltext = "Defined";
+		this.label = new cc.LabelTTF(labeltext, "Arial", 20);
+		this.label.x = 260;
+		this.label.y = 110
+		this.addChild(this.label);
+		this.scheduleUpdate();
 		/////////////////////////////////////////////////////////
 		
 		this.fixedSpritesList=[res.CarFixedRed_png, res.CarFixedWhite_png, res.CarFixedBlack_png];
@@ -84,5 +90,20 @@ var Car = cc.Sprite.extend ({
     // to activate this if you want it
     update:function(dt) {
 
+		//The following block of code updates the car's requirements on screen
+		var carstring = "";
+		var i = 0;
+		for (i; i <= 2; i++)
+		{
+			if (this.req[0][i][1] > 0)
+			{
+				carstring += this.req[0][i][0] + " x" + this.req[0][i][1] + "\n";
+			}
+		}
+		for (i = 1; i < this.req.length;i++)
+		{
+			carstring += this.req[i] + "\n";
+		}
+		this.label.setString(carstring);
     }
 });
