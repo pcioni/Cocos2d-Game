@@ -19,6 +19,7 @@
 		"src/item.js",
 		"src/paint.js",
 		"src/tools.js",
-		"src/trash.js"
+		"src/trash.js",
+		"scr/carpopup.js"
     ]
 }

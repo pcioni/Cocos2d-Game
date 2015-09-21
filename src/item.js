@@ -3,7 +3,7 @@ var Item = cc.Sprite.extend ({
         this._super();
 
         //this.scheduleUpdate();
-
+        this.tag = "";
         return true;
     },
 
