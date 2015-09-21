@@ -29,7 +29,9 @@ var Car = cc.Sprite.extend ({
 		//Creates this.req, an array of everything the car needs
 		this.req=[];
 		var tempNum=0;
+		var numTasks=5;
 		var diff=this.difficulty;
+		var toolChoices=["hammer","blowtorch","wrench"];
 		
 		this.tuple1=["tire",0];
 		this.tuple2=["door",0];
@@ -38,9 +40,10 @@ var Car = cc.Sprite.extend ({
 		
 		for(var i=0; i<this.parts.length; i++){
 			tempNum=Math.floor((Math.random()*4));
-			if(diff-tempNum >= 0){
+			if(diff-tempNum >= 0 && numTasks>3){
 				this.parts[i][1]=tempNum;
 				diff=diff-tempNum;
+				numTasks=numTasks-1;
 			}else{
 				this.parts[i][1]=0;
 			}
@@ -48,26 +51,14 @@ var Car = cc.Sprite.extend ({
 		
 		this.req.push(this.parts);
 		
-		
-		if(Math.floor((Math.random()*10))%2==1 && diff-1 >= 0){
-			this.req.push("hammer");
-			diff=diff-1;
-		}
-		
-		if(Math.floor((Math.random()*10))%2==1 && diff-1 >= 0){
-			this.req.push("blowtorch");
-			diff=diff-1;
-		}
-		
-		if(Math.floor((Math.random()*10))%2==1 && diff-1 >= 0){
-			this.req.push("wrench");
-		}
+		this.req.push(toolChoices[Math.floor((Math.random()*3))]);
+		numTasks=numTasks-1;
 		
 		
 		this.paintColors=["redPaint","whitePaint","blackPaint"];
 		this.index=Math.floor((Math.random()*3));
 		this.paint=this.paintColors[this.index];
-		if(diff-1 >= 0){
+		if(diff>0 && numTasks>0){
 			this.req.push(this.paint);
 			diff=diff-1;
 		}

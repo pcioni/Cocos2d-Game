@@ -117,11 +117,11 @@ var GameLayer = cc.Layer.extend({
                             this.blackPaint, this.redPaint, this.whitePaint, 
 							this.hammer, this.wrench, this.blowtorch, this.trash, this.rat];
 		
-		//this.spawn=this.SpawnNewCar();
-		
-		//window.setInterval(this.SpawnNewCar, 1000);
+		this.counterThing=0;
+		this.CarSpawnSpeed=15;
+		this.CarDiff=3;
 		this.SpawnNewCar();
-		this.schedule(this.SpawnNewCar, 10.0);
+		this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
         return true;
     },
 
@@ -135,13 +135,34 @@ var GameLayer = cc.Layer.extend({
 	
 	SpawnNewCar:function(){
 		
-		this.spritelist.push(new Car(4));
+		this.spritelist.push(new Car(this.CarDiff));
 		this.spritelist[this.spritelist.length-1].x=this.size.width;
 		this.spritelist[this.spritelist.length-1].y=100;
 		this.spritelist[this.spritelist.length-1].state="broken";
 		this.spritelist[this.spritelist.length-1].setTexture(res.CarBroke1_png);
 		this.addChild(this.spritelist[this.spritelist.length-1]);
 		this.PrintCarReq(this.spritelist[this.spritelist.length-1].req);
+		this.counterThing=this.counterThing+1;
+		
+		//THSI IS WHERE OUT DIFFICULTY CURVE IS MADE
+		//PLAY WITH THIS AND MAKE IT BETTER THAN MINE... it's kinda shit
+		if(this.counterThing==3){
+			this.CarSpawnSpeed=10;
+			this.CarDiff=4;
+			this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
+		}
+		
+		if(this.counterThing==15){
+			this.CarDiff=5;
+		}
+		
+		if(this.counterThing==20){
+			this.CarSpawnSpeed=6;
+			this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
+		}
+		//////////////////////////////////////////////////////////////////
+		
+		cc.log("car #: "+this.counterThing);
 	},
 
     //check for collision
