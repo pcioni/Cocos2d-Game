@@ -21,6 +21,11 @@ var GameLayer = cc.Layer.extend({
 
         this.item = new Item;
 
+		//the rat lol
+		this.rat = new Rat;
+		this.rat.x = 1200;
+		this.rat.y = 450;
+
         //Paint children
         this.blackPaint = new Paint;
         this.redPaint = new Paint;
@@ -101,13 +106,14 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.blowtorch);
 		this.addChild(this.item);
 		this.addChild(this.trash);
+		this.addChild(this.rat);
 
 		//prints out what the car needs to the console		
 		//this.PrintCarReq(this.car.req);
 		
         this.spritelist = [this.player, this.engines, this.tires, this.doors,
                             this.blackPaint, this.redPaint, this.whitePaint, 
-							this.hammer, this.wrench, this.blowtorch, this.trash];
+							this.hammer, this.wrench, this.blowtorch, this.trash, this.rat];
 		
 		//this.spawn=this.SpawnNewCar();
 		
@@ -120,6 +126,8 @@ var GameLayer = cc.Layer.extend({
     update:function (dt) {
         this.item.x = this.player.x;
         this.item.y = this.player.y;
+
+
         this.CheckCollisions();
     },
 	
@@ -141,6 +149,11 @@ var GameLayer = cc.Layer.extend({
         for (i = 1; i < this.spritelist.length; i++) {
 			//check for collision
             if (cc.rectIntersectsRect(this.player.getBoundingBox(), this.spritelist[i].getBoundingBox())) {
+
+				if (this.spritelist[i].tag == "rat" && this.player.stunned == false) {
+					this.player.hit();
+				}
+
                 if (this.player.ACTION == true){
                     this.ChangeState(this.spritelist[i]);
 				}

@@ -14,6 +14,9 @@ var Player = cc.Sprite.extend ({
         this.state = "nothing";
         this.nothing = "nothing";
 
+        this.stunned = false;
+        this.ratReset = 0;
+
         this.scheduleUpdate();
 
         //W: keycode 87
@@ -49,11 +52,22 @@ var Player = cc.Sprite.extend ({
 
         return true;
     },
-    // you can also use the update method, which is called every frame
-    // dt is the deltaTime, amount of time since last update call
-    // make sure to call this.scheduleUpdate() in the constructor
-    // to activate this if you want it
+
+    hit:function() {
+        cc.log("hit the rat");
+        this.stunned = true;
+        this.speed -= 4;
+        this.ratReset = 120;
+    },
+
     update:function(dt) {
+
+        if (this.ratReset > 0) this.ratReset -= 1;
+        else {
+            this.stunned = false;
+            this.speed = 12;
+        }
+
         if(this.UP) {
             if (this.y < 903 - this.height/2)
                 this.y += this.speed;
