@@ -142,6 +142,8 @@ var GameLayer = cc.Layer.extend({
 		this.PrintCarReq(this.spritelist[this.spritelist.length-1].req);
 		this.counterThing=this.counterThing+1;
 		
+		//THSI IS WHERE OUT DIFFICULTY CURVE IS MADE
+		//PLAY WITH THIS AND MAKE IT BETTER THAN MINE... it's kinda shit
 		if(this.counterThing==3){
 			this.CarSpawnSpeed=10;
 			this.CarDiff=4;
@@ -156,6 +158,7 @@ var GameLayer = cc.Layer.extend({
 			this.CarSpawnSpeed=6;
 			this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
 		}
+		//////////////////////////////////////////////////////////////////
 		
 		cc.log("car #: "+this.counterThing);
 	},
