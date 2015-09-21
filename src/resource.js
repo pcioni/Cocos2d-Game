@@ -20,6 +20,9 @@ var res = {
 	GameOver_png: "res/gameovah.png",
     ItemBubble_png: "res/Itembubble.png",
 
+    //the rat, lol
+    Rat_png: "res/rat.png",
+
     //Paint Resources
     paintBlank: "res/paintBlank.png",
     redPaint_png: "res/paintRED.png",
