@@ -2,6 +2,19 @@ var Player = cc.Sprite.extend ({
     ctor: function () {
         this._super(res.Player_png);
 
+        //animation junk
+        cc.spriteFrameCache.addSpriteFrames(res.playerRun_plist);
+        var i,f;
+        var frames=[];
+        for (i=1;i<=4;i++) {
+            f=cc.spriteFrameCache.getSpriteFrame("playerRun"+i+".png");
+            frames.push(f);
+        }
+        var playerRunAnim = new cc.Animation(frames, 0.1);
+        this.playerAction = new cc.RepeatForever(new cc.Animate(playerRunAnim));
+        this.runAction(this.playerAction);
+
+
         this.UP = false;
         this.DOWN = false;
         this.LEFT = false;
@@ -74,6 +87,7 @@ var Player = cc.Sprite.extend ({
         if(this.UP) {
             if (this.y < 903 - this.height/2)
                 this.y += this.speed;
+
         }
         else if(this.DOWN) {
             if (this.y > 173 + this.height/2)

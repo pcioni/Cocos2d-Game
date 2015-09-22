@@ -1,6 +1,10 @@
 var res = {
     //Sprite Resources
     Player_png: "res/Player.png",
+    playerRun_png: "res/playerRun.png",
+    playerRun_plist: "res/playerRun.plist",
+
+
     Car_png: "res/Car.png",
     CarBroke1_png: "res/carbroke1.png",
     Background_png: "res/Background.png",
@@ -22,6 +26,7 @@ var res = {
 
     //the rat, lol
     Rat_png: "res/rat.png",
+    Rat_plist: "res/rat.plist",
 
     //Paint Resources
     paintBlank: "res/paintBlank.png",
