@@ -16,28 +16,17 @@ var Player = cc.Sprite.extend ({
 
 
         cc.spriteFrameCache.addSpriteFrames(res.Player_Left_plist);
-
         var leftFrames = [];
-
         for(var i = 1; i < 5; i++)
         {
             var str = "Left" + i + ".png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            //cc.log(i + frame.getTexture());
             leftFrames.push(frame);
-            //leftAnim.addSpriteFrame(frame);
         }
 
-        cc.log("After for loop");
         var leftAnim = new cc.Animation(frames, 0.3);
-        cc.log("After animation set");
-        //leftAnim.setDelayPerUnit(0.08);
-        //this.leftAnim = new cc.Animation(leftFrames, 0.3);
         this.runLeft = new cc.RepeatForever(new cc.Animate(leftAnim));
-        cc.log("After runLeft set");
-        //cc.log(this.getNumberOfRunningActions());
         this.runAction(this.runLeft);
-        //cc.log(this.getNumberOfRunningActions());
 
         cc.log("After runAction set");
         //this.scale = 0.6;
