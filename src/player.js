@@ -2,6 +2,7 @@ var Player = cc.Sprite.extend ({
     ctor: function () {
 
         this._super(res.Player_png);
+        //this._super();
         //this.sprite = new cc.Sprite("res/#Left1.png");
 
         this.UP = false;
@@ -12,27 +13,39 @@ var Player = cc.Sprite.extend ({
 
         this.speed = 5;
 
-        cc.spriteFrameCache.addSpriteFrame(res.Player_Left_plist);
+
+
+        cc.spriteFrameCache.addSpriteFrames(res.Player_Left_plist);
 
         var leftFrames = [];
-        for(var i = 0; i < 4; i++)
+
+        for(var i = 1; i < 5; i++)
         {
             var str = "Left" + i + ".png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
+            //cc.log(i + frame.getTexture());
             leftFrames.push(frame);
+            //leftAnim.addSpriteFrame(frame);
         }
 
-        this.leftAnim = new cc.Animation(leftFrames, 0.3);
-        this.runLeft = new cc.repeatForever(new cc.Animate(this.leftAnim));
-        cc.log(this.getNumberOfRunningActions());
+        cc.log("After for loop");
+        var leftAnim = new cc.Animation(frames, 0.3);
+        cc.log("After animation set");
+        //leftAnim.setDelayPerUnit(0.08);
+        //this.leftAnim = new cc.Animation(leftFrames, 0.3);
+        this.runLeft = new cc.RepeatForever(new cc.Animate(leftAnim));
+        cc.log("After runLeft set");
+        //cc.log(this.getNumberOfRunningActions());
         this.runAction(this.runLeft);
-        cc.log(this.getNumberOfRunningActions());
+        //cc.log(this.getNumberOfRunningActions());
 
+        cc.log("After runAction set");
         //this.scale = 0.6;
         this.state = "nothing";
         this.nothing = "nothing";
 
         this.scheduleUpdate();
+        cc.log("After schedule update");
 
         //W: keycode 87
         //A: keycode 65
@@ -76,7 +89,7 @@ var Player = cc.Sprite.extend ({
         {
             this.y += this.speed;
             this.runAction(this.runLeft);
-            cc.log("Running");
+            //cc.log("Running");
         }
         else if(this.DOWN)
         {

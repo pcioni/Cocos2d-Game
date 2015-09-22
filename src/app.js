@@ -19,7 +19,7 @@ var GameLayer = cc.Layer.extend({
         cc.winSize.width = 1920;
         cc.winSize.height = 1080;
         var size = cc.winSize;
-        cc.log(size);
+        //cc.log(size);
 
         this.player = new Player;
         this.player.x = size.width/2;
@@ -46,7 +46,6 @@ var GameLayer = cc.Layer.extend({
 
         var background = new cc.Sprite(res.Background_png);
 
-        cc.log(background);
 
         this.addChild(background);
         background.x = size.width / 2;
