@@ -34,6 +34,10 @@ var res = {
     Door_png: "res/door.png",
     Tire_png: "res/tire.png",
     Engine_png: "res/engine.png",
+	
+	//Menu Resources
+	StartScreen_png: "res/titlescreen.png",
+	ClickToStart_png: "res/clicktostart_1114x691_2fps_strip2.png",
 
     //Sound Resources
     StageTheme_wav: "res/sound/StageTheme.wav",
