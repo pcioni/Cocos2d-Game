@@ -1,7 +1,8 @@
 var StartScreenLayer=cc.Layer.extend({
 	ctor:function(){
 		this._super();
-		
+		this.audio = cc.audioEngine;
+		this.audio.playMusic(res.TitleTheme_wav,true);
 		var winsize=cc.director.getWinSize();
 		var centerpos=cc.p(winsize.width/2,winsize.height/2);
 		
