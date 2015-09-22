@@ -13,8 +13,7 @@ var GameLayer = cc.Layer.extend({
 
         this.audio = cc.audioEngine; //when using anything with audio in app.js, put audio. in front of it
 
-		//TODO: UNCOMMENT THIS MUSIC
-        //this.audio.playMusic(res.StageTheme_wav,true); //plays the stage theme
+        this.audio.playMusic(res.StageTheme_wav,true); //plays the stage theme
 
         cc.view.setDesignResolutionSize(1920, 1080, cc.ResolutionPolicy.SHOW_ALL);
         cc.winSize.width = 1920;
@@ -211,6 +210,7 @@ var GameLayer = cc.Layer.extend({
                 if (hitObject.contents == "tire") this.item.setTexture(res.Tire_png);
                 if (hitObject.contents == "engine") this.item.setTexture(res.Engine_png);
                 cc.log("Picked up " + hitObject.contents);
+				this.audio.playEffect(res.PickUp_wav);
                 this.player.state = hitObject.contents;
             }
             else if (hitObject.tag == "paint") {
@@ -230,6 +230,7 @@ var GameLayer = cc.Layer.extend({
                     this.item.setTexture(res.redPaint_png);
                     this.player.state = "redPaint";
                 }
+				this.audio.playEffect(res.PickUp_wav);
                 cc.log("picked up paint color " + hitObject.ccolor);
             }
 			else if (hitObject.tag == "tool"){
@@ -242,11 +243,12 @@ var GameLayer = cc.Layer.extend({
 					hitObject.setTexture(res.paintBlank);
 					this.item.setTexture(res.WrenchSitting_png);
 					this.player.state=hitObject.toolType;
-				}else if(hitObject.toolType=="blowtorch"){
+				}else if(hitObject.toolType=="blowtorch") {
 					hitObject.setTexture(res.paintBlank);
 					this.item.setTexture(res.BlowTorchSitting_png);
-					this.player.state=hitObject.toolType;
+					this.player.state = hitObject.toolType;
 				}
+				this.audio.playEffect(res.PickUp_wav);
 			}
 			this.player.ACTION=false;
         }
@@ -259,12 +261,14 @@ var GameLayer = cc.Layer.extend({
 				if (this.item.tag != "perm")
 					this.item.setTexture(res.blank);
 			}
-			else if (this.ComparePartToCar(hitObject) == false)
+			else if (this.ComparePartToCar(hitObject) == false) {
 				if (this.item.tag != "perm") {
 					this.item.setTexture(res.blank);
 					this.player.state = this.player.nothing;
+					this.audio.playEffect(res.WrongPart_wav);
 				}
 				//ADD SCORE DEDUCTION HERE
+			}
 			if(this.CheckCarCompletion(hitObject.req)==true){
 					hitObject.state="repaired";
 					hitObject.setTexture(hitObject.fixedSprite);
@@ -319,6 +323,7 @@ var GameLayer = cc.Layer.extend({
 			this.player.state =this.player.nothing;
 			this.item.setTexture((res.blank));
 			cc.log("THREW IT AWAY");
+			this.audio.playEffect(res.PickUp_wav);
 		}
 
 		this.player.ACTION=false;
@@ -350,6 +355,7 @@ var GameLayer = cc.Layer.extend({
 					if(this.player.state==car.req[0][j][0] && car.req[0][j][1]>0){
 						car.req[0][j][1]=car.req[0][j][1]-1;
 						cc.log(car.req[0][j][0]+" added to car");
+						this.audio.playEffect(res.Place_wav);
 						this.PrintCarReq(car.req);
 						return true;
 					}
@@ -357,6 +363,18 @@ var GameLayer = cc.Layer.extend({
 			}else{
 				if(this.player.state==car.req[i]){
 					cc.log(car.req[i]+" added to car");
+					if (car.req[i] == "hammer" || car.req[i] == "wrench")
+					{
+						this.audio.playEffect(res.Wrench_wav);
+					}
+					else if (car.req[i] == "blowtorch")
+					{
+						this.audio.playEffect(res.Torch_wav);
+					}
+					else
+					{
+						this.audio.playEffect(res.SprayPaint_wav);
+					}
 					car.req[i]="";
 					this.PrintCarReq(car.req);
 					return false;

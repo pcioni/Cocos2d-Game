@@ -41,7 +41,10 @@ var res = {
     TitleTheme_wav: "res/sound/GameOver.wav",
     PickUp_wav: "res/sound/PickUp.wav",
     SprayPaint_wav: "res/sound/SprayPaint.wav",
-    WrongPart_wav: "res/sound/WrongPart.wav"
+    Torch_wav: "res/sound/Torch.wav",
+    Wrench_wav: "res/sound/Wrench.wav",
+    WrongPart_wav: "res/sound/WrongPart.wav",
+    Place_wav: "res/sound/Place.wav"
 
 };
 
