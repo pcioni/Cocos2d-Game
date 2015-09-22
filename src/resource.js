@@ -26,7 +26,7 @@ var res = {
 
     //the rat, lol
     Rat_png: "res/rat.png",
-    Rat_plist: "res/rat.plist",
+    //Rat_plist: "res/rat.plist",
 
     //Paint Resources
     paintBlank: "res/paintBlank.png",

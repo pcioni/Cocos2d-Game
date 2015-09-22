@@ -6,7 +6,7 @@ var Player = cc.Sprite.extend ({
         cc.spriteFrameCache.addSpriteFrames(res.playerRun_plist);
         var i,f;
         var frames=[];
-        for (i=1;i<=4;i++) {
+        for (i=1; i <= 4; i++) {
             f=cc.spriteFrameCache.getSpriteFrame("playerRun"+i+".png");
             frames.push(f);
         }
