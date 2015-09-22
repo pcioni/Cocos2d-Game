@@ -7,52 +7,52 @@
             <key>playerRun1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{83,114}}</string>
+                <string>{{2,2},{59,86}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{83,114}}</string>
+                <string>{{13,13},{59,86}}</string>
                 <key>sourceSize</key>
                 <string>{83,114}</string>
             </dict>
             <key>playerRun2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{87,2},{83,114}}</string>
+                <string>{{63,2},{61,92}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{3,5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{83,114}}</string>
+                <string>{{14,6},{61,92}}</string>
                 <key>sourceSize</key>
                 <string>{83,114}</string>
             </dict>
             <key>playerRun3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{172,2},{83,114}}</string>
+                <string>{{126,2},{59,86}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-3,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{83,114}}</string>
+                <string>{{9,14},{59,86}}</string>
                 <key>sourceSize</key>
                 <string>{83,114}</string>
             </dict>
             <key>playerRun4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{257,2},{83,114}}</string>
+                <string>{{187,2},{59,88}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-1,7}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{83,114}}</string>
+                <string>{{11,6},{59,88}}</string>
                 <key>sourceSize</key>
                 <string>{83,114}</string>
             </dict>
@@ -64,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>playerRun.png</string>
             <key>size</key>
-            <string>{342,118}</string>
+            <string>{248,96}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:223a8c8fe9a3f11b84bff6fec267bb8e:5f74e626d4aabbf0572569adbe4581bd:d1802a6176f3c8fa0d4e94fb569f06a6$</string>
+            <string>$TexturePacker:SmartUpdate:3fe69cb621aaa82b4d71931efcb321db:5f74e626d4aabbf0572569adbe4581bd:d1802a6176f3c8fa0d4e94fb569f06a6$</string>
             <key>textureFileName</key>
             <string>playerRun.png</string>
         </dict>
