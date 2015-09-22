@@ -21,7 +21,6 @@
 		"src/tools.js",
 		"src/trash.js",
 		"src/rat.js",
-		"scr/carpopup.js",
 		"src/GameOverScene.js"
     ]
 }

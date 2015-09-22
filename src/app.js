@@ -92,6 +92,13 @@ var GameLayer = cc.Layer.extend({
 		this.trash = new Trash;
 		this.trash.x=this.size.width/2;
 		this.trash.y=(this.size.height/2) - 200;
+		
+		//Lives Label
+		var labeltext = "Defined";
+		this.Liveslabel = new cc.LabelTTF(labeltext, "Arial", 50);
+		this.Liveslabel.x = 1650;
+		this.Liveslabel.y = 850;
+		this.Liveslabel.setColor(cc.color(255,0,0));
 
 		//add everything as a child
         this.addChild(background);
@@ -108,6 +115,7 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.item);
 		this.addChild(this.trash);
 		this.addChild(this.rat);
+		this.addChild(this.Liveslabel);
 
 		//prints out what the car needs to the console		
 		//this.PrintCarReq(this.car.req);
@@ -127,7 +135,8 @@ var GameLayer = cc.Layer.extend({
     update:function (dt) {
         this.item.x = this.player.x;
         this.item.y = this.player.y;
-
+		
+		this.Liveslabel.setString("Lives: "+this.player.lives);
 
         this.CheckCollisions();
     },

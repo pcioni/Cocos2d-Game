@@ -65,7 +65,7 @@ var Car = cc.Sprite.extend ({
 		var labeltext = "Defined";
 		this.label = new cc.LabelTTF(labeltext, "Arial", 20);
 		this.label.x = 260;
-		this.label.y = 110
+		this.label.y = 110;
 		this.addChild(this.label);
 		this.scheduleUpdate();
 		/////////////////////////////////////////////////////////
