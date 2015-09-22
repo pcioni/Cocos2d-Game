@@ -65,6 +65,15 @@ var GameLayer = cc.Layer.extend({
         this.player = new Player;
         this.player.x = this.size.width/2;
         this.player.y = this.size.height/2;
+
+		//Score and Lives display
+		this.points = 0;
+		this.liveslabel = new cc.LabelTTF("Lives: " + this.player.lives,"Arial",40);
+		this.pointslabel = new cc.LabelTTF("Score: " + this.points,"Arial",40);
+		this.liveslabel.x = 1700;
+		this.liveslabel.y = 760;
+		this.pointslabel.x = 1700;
+		this.pointslabel.y = 720;
 		
         //Item children
 		this.doors = new Crate;
@@ -108,6 +117,8 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.item);
 		this.addChild(this.trash);
 		this.addChild(this.rat);
+		this.addChild(this.pointslabel);
+		this.addChild(this.liveslabel);
 
 		//prints out what the car needs to the console		
 		//this.PrintCarReq(this.car.req);
@@ -129,6 +140,8 @@ var GameLayer = cc.Layer.extend({
         this.item.y = this.player.y;
 
         this.CheckCollisions();
+		this.liveslabel.setString("Lives: " + this.player.lives); //updates the lives on screen
+		this.pointslabel.setString("Score: " + this.points); //updates score on screen
     },
 	
 	SpawnNewCar:function(){
@@ -189,7 +202,16 @@ var GameLayer = cc.Layer.extend({
 				cc.log("THIS IS NO LONGER IN SPRITELIST");
 				cc.log("lives: "+this.player.lives);
 				if(this.player.lives==0){
-					cc.director.runScene(new GameOverScene());
+					this.GameOver = new GameOverScene();
+					cc.director.runScene(this.GameOver);
+					//stops all sounds and switches to game over
+					this.audio.stopMusic();
+					this.audio.stopAllEffects();
+					this.audio.playMusic(res.GameOver_wav,false);
+					this.finalscore = new cc.LabelTTF("Final Score: " + this.points, "Arial",40);
+					this.GameOver.addChild(this.finalscore);
+					this.finalscore.x = 960;
+					this.finalscore.y = 180;
 				}
 			}
         }
@@ -265,10 +287,12 @@ var GameLayer = cc.Layer.extend({
 					this.item.setTexture(res.blank);
 					this.player.state = this.player.nothing;
 					this.audio.playEffect(res.WrongPart_wav);
+					this.points -= 50; //subtracts 50 points when you put on the wrong part
 				}
 				//ADD SCORE DEDUCTION HERE
 			}
 			if(this.CheckCarCompletion(hitObject.req)==true){
+					this.points += hitObject.difficulty*50;
 					hitObject.state="repaired";
 					hitObject.setTexture(hitObject.fixedSprite);
 			}
