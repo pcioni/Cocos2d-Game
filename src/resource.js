@@ -47,7 +47,7 @@ var res = {
     //Sound Resources
     StageTheme_wav: "res/sound/StageTheme.wav",
     GameOver_wav: "res/sound/GameOver.wav",
-    TitleTheme_wav: "res/sound/GameOver.wav",
+    TitleTheme_wav: "res/sound/TitleTheme.wav",
     PickUp_wav: "res/sound/PickUp.wav",
     SprayPaint_wav: "res/sound/SprayPaint.wav",
     Torch_wav: "res/sound/Torch.wav",
