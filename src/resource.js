@@ -34,7 +34,18 @@ var res = {
 
     //the rat, lol
     Rat_png: "res/rat.png",
-    //Rat_plist: "res/rat.plist",
+    ratVert_png: "res/ratVert.png",
+    ratVert_plist: "res/ratVert.plist",
+    ratHorz_png: "res/ratHorz.png",
+    ratHorz_plist: "res/ratHorz.plist",
+
+    torchSign: "res/tag_blowtorch.png",
+    hammerSign: "res/tag_hammer.png",
+    wrenchSign: "res/tag_wrench.png",
+    blackPaintSign: "res/tag_paintB.png",
+    redPaintSign: "res/tag_paintR.png",
+    whitePaintSign: "res/tag_paintW.png",
+
 
     //Paint Resources
     paintBlank: "res/paintBlank.png",

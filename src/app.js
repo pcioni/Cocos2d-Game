@@ -145,13 +145,13 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this.tires);
 		this.addChild(this.doors);
 		this.addChild(this.engines);
+		this.addChild(this.trash);
+		this.addChild(this.rat);
+		this.addChild(this.player);
 		this.addChild(this.hammer);
 		this.addChild(this.wrench);
 		this.addChild(this.blowtorch);
 		this.addChild(this.item);
-		this.addChild(this.trash);
-		this.addChild(this.rat);
-		this.addChild(this.player);
 		this.addChild(this.pointslabel);
 		this.addChild(this.liveslabel);
 
@@ -171,7 +171,7 @@ var GameLayer = cc.Layer.extend({
     },
 
     update:function (dt) {
-        this.item.x = this.player.x;
+        this.item.x = this.player.x+30;
         this.item.y = this.player.y;
 
         this.CheckCollisions();
@@ -190,7 +190,7 @@ var GameLayer = cc.Layer.extend({
 		this.PrintCarReq(this.spritelist[this.spritelist.length-1].req);
 		this.counterThing=this.counterThing+1;
 		
-		//THSI IS WHERE OUT DIFFICULTY CURVE IS MADE
+		//THIS IS WHERE OUT DIFFICULTY CURVE IS MADE
 		//PLAY WITH THIS AND MAKE IT BETTER THAN MINE... it's kinda shit
 		if(this.counterThing==3){
 			this.CarSpawnSpeed=10;
@@ -270,19 +270,19 @@ var GameLayer = cc.Layer.extend({
                 this.player.state = hitObject.contents;
             }
             else if (hitObject.tag == "paint") {
-				this.item.tag = "perm"
+				this.item.tag = "perm";
                 if (hitObject.ccolor == "white") {
-                    hitObject.setTexture(res.paintBlank);
+                    hitObject.setTexture(res.whitePaintSign);
                     this.item.setTexture(res.whitePaint_png);
                     this.player.state = "whitePaint";
                 }
                 if (hitObject.ccolor == "black") {
-                    hitObject.setTexture(res.paintBlank);
+                    hitObject.setTexture(res.blackPaintSign);
                     this.item.setTexture(res.blackPaint_png);
                     this.player.state = "blackPaint";
                 }
                 if (hitObject.ccolor == "red") {
-                    hitObject.setTexture(res.paintBlank);
+                    hitObject.setTexture(res.redPaintSign);
                     this.item.setTexture(res.redPaint_png);
                     this.player.state = "redPaint";
                 }
@@ -292,15 +292,15 @@ var GameLayer = cc.Layer.extend({
 			else if (hitObject.tag == "tool"){
 				this.item.tag = "perm";
 				if(hitObject.toolType=="hammer"){
-					hitObject.setTexture(res.paintBlank);
+					hitObject.setTexture(res.hammerSign);
 					this.item.setTexture(res.HammerSitting_png);
 					this.player.state=hitObject.toolType;
 				}else if(hitObject.toolType=="wrench"){
-					hitObject.setTexture(res.paintBlank);
+					hitObject.setTexture(res.wrenchSign);
 					this.item.setTexture(res.WrenchSitting_png);
 					this.player.state=hitObject.toolType;
 				}else if(hitObject.toolType=="blowtorch") {
-					hitObject.setTexture(res.paintBlank);
+					hitObject.setTexture(res.torchSign);
 					this.item.setTexture(res.BlowTorchSitting_png);
 					this.player.state = hitObject.toolType;
 				}
@@ -383,8 +383,6 @@ var GameLayer = cc.Layer.extend({
 			cc.log("THREW IT AWAY");
 			this.audio.playEffect(res.PickUp_wav);
 		}
-
-		this.player.ACTION=false;
 		
 		cc.log("Already holding something and not next to car");
 		this.player.ACTION=false;
