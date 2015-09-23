@@ -186,6 +186,7 @@ var GameLayer = cc.Layer.extend({
 		this.spritelist[this.spritelist.length-1].y=100;
 		this.spritelist[this.spritelist.length-1].state="broken";
 		this.spritelist[this.spritelist.length-1].setTexture(res.CarBroke1_png);
+
 		this.addChild(this.spritelist[this.spritelist.length-1]);
 		this.PrintCarReq(this.spritelist[this.spritelist.length-1].req);
 		this.counterThing=this.counterThing+1;

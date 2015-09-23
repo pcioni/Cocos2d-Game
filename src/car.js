@@ -5,6 +5,11 @@ var Car = cc.Sprite.extend ({
 		this.tag="car";
 		this.state="";
 
+		this.bubble = new cc.Sprite(res.ItemBubble_png);
+		this.bubble.x = 275;
+		this.bubble.y = 150;
+		this.addChild(this.bubble);
+
 		cc.winSize.width = 1920;
         cc.winSize.height = 1080;
         var size = cc.winSize;
@@ -64,6 +69,7 @@ var Car = cc.Sprite.extend ({
 		}
 		var labeltext = "Defined";
 		this.label = new cc.LabelTTF(labeltext, "Arial", 20);
+		this.label.color = cc.color(0, 0, 0, 0);
 		this.label.x = 260;
 		this.label.y = 110;
 		this.addChild(this.label);
