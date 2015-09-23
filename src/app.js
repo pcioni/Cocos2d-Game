@@ -331,6 +331,7 @@ var GameLayer = cc.Layer.extend({
 					this.points += hitObject.difficulty*50;
 					hitObject.state="repaired";
 					hitObject.setTexture(hitObject.fixedSprite);
+					hitObject.removeChild(hitObject.bubble);
 			}
         }
 		//put down paint in it's original spot
