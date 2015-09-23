@@ -193,18 +193,13 @@ var GameLayer = cc.Layer.extend({
 		
 		//THIS IS WHERE OUT DIFFICULTY CURVE IS MADE
 		//PLAY WITH THIS AND MAKE IT BETTER THAN MINE... it's kinda shit
-		if(this.counterThing==3){
-			this.CarSpawnSpeed=10;
-			this.CarDiff=4;
+		if(this.CarSpawnSpeed>8 && this.counterThing%3==0){
+			this.CarSpawnSpeed=this.CarSpawnSpeed-1;
 			this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
 		}
 		
-		if(this.counterThing==15){
-			this.CarDiff=5;
-		}
-		
-		if(this.counterThing==20){
-			this.CarSpawnSpeed=6;
+		if(this.counterThing==10){
+			this.CarDiff=4;
 			this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
 		}
 		//////////////////////////////////////////////////////////////////

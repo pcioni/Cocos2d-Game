@@ -25,7 +25,7 @@ var Player = cc.Sprite.extend ({
         this.RIGHT = false;
         this.ACTION = false;
 
-        this.speed = 12;
+        this.speed = 20;
 		this.lives=3;
 
         //this.scale = 0.6;
@@ -76,7 +76,7 @@ var Player = cc.Sprite.extend ({
         this.setColor (new cc.Color(255,0,0));
         this.stunned = true;
         this.speed -= 4;
-        this.ratReset = 120;
+        this.ratReset = 60;
     },
 
     update:function(dt) {
@@ -85,7 +85,7 @@ var Player = cc.Sprite.extend ({
         if (this.ratReset > 0) this.ratReset -= 1;
         else {
             this.stunned = false;
-            this.speed = 12;
+            this.speed = 20;
             this.setColor (new cc.Color(255,255,255));
         }
 
