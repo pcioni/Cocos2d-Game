@@ -5,6 +5,7 @@ var Rat = cc.Sprite.extend ({
 
         this.tag = "rat";
         this.speed = 7;
+        //change this number to determine how often the rat switches direction
         this.schedule(this.randomWalk, 0.25);
 
         this.dirs = ["up", "down", "left", "right"];
@@ -35,6 +36,8 @@ var Rat = cc.Sprite.extend ({
         return true;
     },
 
+    //The rat operates on a random walk. It rolls a number 0-3, uses that as an index for a direction in dirs.
+    //It runs that direction for 1/4 of a second befre rerolling. Change this number in this.schedule
     randomWalk:function() {
         var num = Math.floor((Math.random()*100)) % 4;
         this.direction = this.dirs[num];
