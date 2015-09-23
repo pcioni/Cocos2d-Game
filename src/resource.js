@@ -4,6 +4,14 @@ var res = {
     playerRun_png: "res/playerRun.png",
     playerRun_plist: "res/playerRun.plist",
 
+    cbeltMID_png: "res/cbeltMID.png",
+    cbeltMID_plist: "res/cbeltMID.plist",
+
+    cbeltEND_png: "res/cbeltEND.png",
+    cbeltEND_plist: "res/cbeltEND.plist",
+
+    cbeltVERT_png: "res/cbeltVERT.png",
+    cbeltVERT_plist: "res/cbeltVERT.plist",
 
     Car_png: "res/Car.png",
     CarBroke1_png: "res/carbroke1.png",
@@ -47,7 +55,7 @@ var res = {
     //Sound Resources
     StageTheme_wav: "res/sound/StageTheme.wav",
     GameOver_wav: "res/sound/GameOver.wav",
-    TitleTheme_wav: "res/sound/GameOver.wav",
+    TitleTheme_wav: "res/sound/TitleTheme.wav",
     PickUp_wav: "res/sound/PickUp.wav",
     SprayPaint_wav: "res/sound/SprayPaint.wav",
     Torch_wav: "res/sound/Torch.wav",

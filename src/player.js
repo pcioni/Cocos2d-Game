@@ -1,6 +1,6 @@
 var Player = cc.Sprite.extend ({
     ctor: function () {
-        this._super(res.Player_png);
+        this._super();
 
         //animation junk
         cc.spriteFrameCache.addSpriteFrames(res.playerRun_plist);
