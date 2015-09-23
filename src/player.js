@@ -25,7 +25,7 @@ var Player = cc.Sprite.extend ({
         this.RIGHT = false;
         this.ACTION = false;
 
-        this.speed = 12;
+        this.speed = 15;
 		this.lives=3;
 
         //this.scale = 0.6;
