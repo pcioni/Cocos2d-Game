@@ -221,6 +221,7 @@ var GameLayer = cc.Layer.extend({
             if (cc.rectIntersectsRect(this.player.getBoundingBox(), this.spritelist[i].getBoundingBox())) {
 
 				if (this.spritelist[i].tag == "rat" && this.player.stunned == false) {
+					this.points -= 20;
 					this.player.hit();
 				}
 
