@@ -81,26 +81,18 @@ var Car = cc.Sprite.extend ({
 		
         return true;
     },
-    // you can also use the update method, which is called every frame
-    // dt is the deltaTime, amount of time since last update call
-    // make sure to call this.scheduleUpdate() in the constructor
-    // to activate this if you want it
+
     update:function(dt) {
 
 		//The following block of code updates the car's requirements on screen
 		var carstring = "";
 		var i = 0;
-		for (i; i <= 2; i++)
-		{
+		for (i; i <= 2; i++) {
 			if (this.req[0][i][1] > 0)
-			{
 				carstring += this.req[0][i][0] + " x" + this.req[0][i][1] + "\n";
-			}
 		}
 		for (i = 1; i < this.req.length;i++)
-		{
 			carstring += this.req[i] + "\n";
-		}
 		this.label.setString(carstring);
     }
 });

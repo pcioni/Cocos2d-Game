@@ -7,6 +7,8 @@ var cbelt = cc.Sprite.extend ({
     },
 
 
+
+    //different animations for each direction of the belt, including end pieces
     cmid:function() {
         //animation junk
         cc.spriteFrameCache.addSpriteFrames(res.cbeltMID_plist);

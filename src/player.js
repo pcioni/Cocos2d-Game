@@ -89,10 +89,8 @@ var Player = cc.Sprite.extend ({
             this.setColor (new cc.Color(255,255,255));
         }
 
-        if(this.UP  || this.DOWN || this.LEFT || this.RIGHT)
-        {
-            if(this.IDLE)
-            {
+        if(this.UP  || this.DOWN || this.LEFT || this.RIGHT) {
+            if(this.IDLE) {
                 cc.log("This.UP: " + this.UP + " This.DOWN: " + this.DOWN);
                 cc.log("Changing action to running");
                 this.stopAction(this.idleAction);
@@ -102,8 +100,7 @@ var Player = cc.Sprite.extend ({
         }
         else
         {
-            if(this.IDLE == false)
-            {
+            if(this.IDLE == false) {
                 cc.log("Setting action to idleAction");
                 this.IDLE = true;
                 this.stopAction(this.playerAction);
@@ -115,25 +112,20 @@ var Player = cc.Sprite.extend ({
         if(this.UP) {
             if (this.y < 903 - this.height/2)
                 this.y += this.speed;
-
         }
         else if(this.DOWN) {
             if (this.y > 173 + this.height/2)
                 this.y -= this.speed;
-
         }
         if(this.LEFT) {
             this.flippedX = 180;
             if (this.x > 188 + this.width/2)
                 this.x -= this.speed;
-
         }
         else if(this.RIGHT){
-
             this.flippedX = 0;
             if (this.x < 1920 - this.width/2)
                 this.x += this.speed;
-
         }
 
 
