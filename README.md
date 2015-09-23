@@ -1,6 +1,6 @@
 # Cocos2d-Game
 
-<Abandon hope of pretty code, all ye who enter here>
+##Abandon hope of pretty code, all ye who enter here##
 
 Team members:
 Mark Stein
