@@ -51,16 +51,16 @@ var GameLayer = cc.Layer.extend({
         this.redPaint.y = 600;
 		
 		//tools children
-		this.hammer = new Tool;
-		this.wrench = new Tool;
-		this.blowtorch = new Tool;
-		this.hammer.toolType = "hammer";
-		this.wrench.toolType = "wrench";
-		this.blowtorch.toolType = "blowtorch";
+	this.hammer = new Tool;
+	this.wrench = new Tool;
+	this.blowtorch = new Tool;
+	this.hammer.toolType = "hammer";
+	this.wrench.toolType = "wrench";
+	this.blowtorch.toolType = "blowtorch";
         this.hammer.setTexture(res.HammerSitting_png);
-		this.wrench.setTexture(res.WrenchSitting_png);
-		this.blowtorch.setTexture(res.BlowTorchSitting_png);
-		this.hammer.x = 450;
+	this.wrench.setTexture(res.WrenchSitting_png);
+	this.blowtorch.setTexture(res.BlowTorchSitting_png);
+	this.hammer.x = 450;
         this.wrench.x = 450;
         this.blowtorch.x = 450;
         this.hammer.y = 300;
@@ -72,107 +72,107 @@ var GameLayer = cc.Layer.extend({
         this.player.x = this.size.width/2;
         this.player.y = this.size.height/2;
 
-		//Score and Lives display
-		this.points = 0;
-		this.liveslabel = new cc.LabelTTF("Lives: " + this.player.lives,"Arial",40);
-		this.pointslabel = new cc.LabelTTF("Score: " + this.points,"Arial",40);
-		this.liveslabel.x = 1700;
-		this.liveslabel.y = 760;
-		this.pointslabel.x = 1700;
-		this.pointslabel.y = 720;
-		
-        //Item children
-		this.doors = new Crate;
+	//Score and Lives display
+	this.points = 0;
+	this.liveslabel = new cc.LabelTTF("Lives: " + this.player.lives,"Arial",40);
+	this.pointslabel = new cc.LabelTTF("Score: " + this.points,"Arial",40);
+	this.liveslabel.x = 1700;
+	this.liveslabel.y = 760;
+	this.pointslabel.x = 1700;
+	this.pointslabel.y = 720;
+	
+        /Item children
+	this.doors = new Crate;
         this.doors.contents = "door";
-		this.doors.setTexture(res.BoxOfDoors_png);
+	this.doors.setTexture(res.BoxOfDoors_png);
         this.doors.x = this.size.width/2 - 250;
         this.doors.y = this.size.height/2;
         this.tires = new Crate;
         this.tires.contents = "tire";
-		this.tires.setTexture(res.BoxOfWheels_png);
+	this.tires.setTexture(res.BoxOfWheels_png);
         this.tires.x = this.size.width/2;
         this.tires.y = this.size.height/2;
         this.engines = new Crate;
         this.engines.contents = "engine";
-		this.engines.setTexture(res.BoxOfEngines_png);
+	this.engines.setTexture(res.BoxOfEngines_png);
         this.engines.x = this.size.width/2 + 250;
         this.engines.y = this.size.height/2;
 		
-		//background child
+	//background child
         var background = new cc.Sprite(res.Background_png);
         background.x = this.size.width / 2;
         background.y = this.size.height / 2;
 
-		//trash child
-		this.trash = new Trash;
-		this.trash.x=this.size.width/2;
-		this.trash.y=(this.size.height/2) - 200;
+	//trash child
+	this.trash = new Trash;
+	this.trash.x=this.size.width/2;
+	this.trash.y=(this.size.height/2) - 200;
 
-		//add everything as a child
-		this.addChild(background);
+	//add everything as a child
+	this.addChild(background);
 
-		//conveyor belts
-		//This is the dumbest way of doing this, but hey, I couldn't get a list to work.
-		this.cbeltBottomMid1 = new cbelt; this.cbeltBottomMid1.x = 90; this.cbeltBottomMid1.y = 90; this.cbeltBottomMid1.cmid(); this.addChild(this.cbeltBottomMid1);
-		this.cbeltBottomMid2 = new cbelt; this.cbeltBottomMid2.x = 270; this.cbeltBottomMid2.y = 90; this.cbeltBottomMid2.cmid(); this.addChild(this.cbeltBottomMid2);
-		this.cbeltBottomMid3 = new cbelt; this.cbeltBottomMid3.x = 360; this.cbeltBottomMid3.y = 90; this.cbeltBottomMid3.cmid(); this.addChild(this.cbeltBottomMid3);
-		this.cbeltBottomMid4 = new cbelt; this.cbeltBottomMid4.x = 540; this.cbeltBottomMid4.y = 90; this.cbeltBottomMid4.cmid(); this.addChild(this.cbeltBottomMid4);
-		this.cbeltBottomMid5 = new cbelt; this.cbeltBottomMid5.x = 720; this.cbeltBottomMid5.y = 90; this.cbeltBottomMid5.cmid(); this.addChild(this.cbeltBottomMid5);
-		this.cbeltBottomMid6 = new cbelt; this.cbeltBottomMid6.x = 900; this.cbeltBottomMid6.y = 90; this.cbeltBottomMid6.cmid(); this.addChild(this.cbeltBottomMid6);
-		this.cbeltBottomMid7 = new cbelt; this.cbeltBottomMid7.x = 1080; this.cbeltBottomMid7.y = 90; this.cbeltBottomMid7.cmid(); this.addChild(this.cbeltBottomMid7);
-		this.cbeltBottomMid8 = new cbelt; this.cbeltBottomMid8.x = 1260; this.cbeltBottomMid8.y = 90; this.cbeltBottomMid8.cmid(); this.addChild(this.cbeltBottomMid8);
-		this.cbeltBottomMid9 = new cbelt; this.cbeltBottomMid9.x = 1440; this.cbeltBottomMid9.y = 90; this.cbeltBottomMid9.cmid(); this.addChild(this.cbeltBottomMid9);
-		this.cbeltBottomMid10 = new cbelt; this.cbeltBottomMid10.x = 1620; this.cbeltBottomMid10.y = 90; this.cbeltBottomMid10.cmid(); this.addChild(this.cbeltBottomMid10);
-		this.cbeltBottomMid11 = new cbelt; this.cbeltBottomMid11.x = 1800; this.cbeltBottomMid11.y = 90; this.cbeltBottomMid11.cmid(); this.addChild(this.cbeltBottomMid11);
-		this.cbeltBottomMid12 = new cbelt; this.cbeltBottomMid12.x = 1980; this.cbeltBottomMid12.y = 90; this.cbeltBottomMid12.cend(); this.addChild(this.cbeltBottomMid12);
+	//conveyor belts
+	//This is the dumbest way of doing this, but hey, I couldn't get a list to work.
+	this.cbeltBottomMid1 = new cbelt; this.cbeltBottomMid1.x = 90; this.cbeltBottomMid1.y = 90; this.cbeltBottomMid1.cmid(); this.addChild(this.cbeltBottomMid1);
+	this.cbeltBottomMid2 = new cbelt; this.cbeltBottomMid2.x = 270; this.cbeltBottomMid2.y = 90; this.cbeltBottomMid2.cmid(); this.addChild(this.cbeltBottomMid2);
+	this.cbeltBottomMid3 = new cbelt; this.cbeltBottomMid3.x = 360; this.cbeltBottomMid3.y = 90; this.cbeltBottomMid3.cmid(); this.addChild(this.cbeltBottomMid3);
+	this.cbeltBottomMid4 = new cbelt; this.cbeltBottomMid4.x = 540; this.cbeltBottomMid4.y = 90; this.cbeltBottomMid4.cmid(); this.addChild(this.cbeltBottomMid4);
+	this.cbeltBottomMid5 = new cbelt; this.cbeltBottomMid5.x = 720; this.cbeltBottomMid5.y = 90; this.cbeltBottomMid5.cmid(); this.addChild(this.cbeltBottomMid5);
+	this.cbeltBottomMid6 = new cbelt; this.cbeltBottomMid6.x = 900; this.cbeltBottomMid6.y = 90; this.cbeltBottomMid6.cmid(); this.addChild(this.cbeltBottomMid6);
+	this.cbeltBottomMid7 = new cbelt; this.cbeltBottomMid7.x = 1080; this.cbeltBottomMid7.y = 90; this.cbeltBottomMid7.cmid(); this.addChild(this.cbeltBottomMid7);
+	this.cbeltBottomMid8 = new cbelt; this.cbeltBottomMid8.x = 1260; this.cbeltBottomMid8.y = 90; this.cbeltBottomMid8.cmid(); this.addChild(this.cbeltBottomMid8);
+	this.cbeltBottomMid9 = new cbelt; this.cbeltBottomMid9.x = 1440; this.cbeltBottomMid9.y = 90; this.cbeltBottomMid9.cmid(); this.addChild(this.cbeltBottomMid9);
+	this.cbeltBottomMid10 = new cbelt; this.cbeltBottomMid10.x = 1620; this.cbeltBottomMid10.y = 90; this.cbeltBottomMid10.cmid(); this.addChild(this.cbeltBottomMid10);
+	this.cbeltBottomMid11 = new cbelt; this.cbeltBottomMid11.x = 1800; this.cbeltBottomMid11.y = 90; this.cbeltBottomMid11.cmid(); this.addChild(this.cbeltBottomMid11);
+	this.cbeltBottomMid12 = new cbelt; this.cbeltBottomMid12.x = 1980; this.cbeltBottomMid12.y = 90; this.cbeltBottomMid12.cend(); this.addChild(this.cbeltBottomMid12);
 
-		this.cbeltLeft1 = new cbelt; this.cbeltLeft1.x = 80; this.cbeltLeft1.y = 255; this.cbeltLeft1.cvert(); this.addChild((this.cbeltLeft1));
-		this.cbeltLeft2 = new cbelt; this.cbeltLeft2.x = 80; this.cbeltLeft2.y = 405; this.cbeltLeft2.cvert(); this.addChild((this.cbeltLeft2));
-		this.cbeltLeft3 = new cbelt; this.cbeltLeft3.x = 80; this.cbeltLeft3.y = 555; this.cbeltLeft3.cvert(); this.addChild((this.cbeltLeft3));
-		this.cbeltLeft4 = new cbelt; this.cbeltLeft4.x = 80; this.cbeltLeft4.y = 705; this.cbeltLeft4.cvert(); this.addChild((this.cbeltLeft4));
-		this.cbeltLeft5 = new cbelt; this.cbeltLeft5.x = 80; this.cbeltLeft5.y = 855; this.cbeltLeft5.cvert(); this.addChild((this.cbeltLeft5));
+	this.cbeltLeft1 = new cbelt; this.cbeltLeft1.x = 80; this.cbeltLeft1.y = 255; this.cbeltLeft1.cvert(); this.addChild((this.cbeltLeft1));
+	this.cbeltLeft2 = new cbelt; this.cbeltLeft2.x = 80; this.cbeltLeft2.y = 405; this.cbeltLeft2.cvert(); this.addChild((this.cbeltLeft2));
+	this.cbeltLeft3 = new cbelt; this.cbeltLeft3.x = 80; this.cbeltLeft3.y = 555; this.cbeltLeft3.cvert(); this.addChild((this.cbeltLeft3));
+	this.cbeltLeft4 = new cbelt; this.cbeltLeft4.x = 80; this.cbeltLeft4.y = 705; this.cbeltLeft4.cvert(); this.addChild((this.cbeltLeft4));
+	this.cbeltLeft5 = new cbelt; this.cbeltLeft5.x = 80; this.cbeltLeft5.y = 855; this.cbeltLeft5.cvert(); this.addChild((this.cbeltLeft5));
 
-		this.cbeltTopMid1 = new cbelt; this.cbeltTopMid1.x = 90; this.cbeltTopMid1.y = 1000; this.cbeltTopMid1.cmidrev(); this.addChild(this.cbeltTopMid1); this.flippedX = 180;
-		this.cbeltTopMid2 = new cbelt; this.cbeltTopMid2.x = 270; this.cbeltTopMid2.y = 1000; this.cbeltTopMid2.cmidrev(); this.addChild(this.cbeltTopMid2); this.flippedX = 180;
-		this.cbeltTopMid3 = new cbelt; this.cbeltTopMid3.x = 360; this.cbeltTopMid3.y = 1000; this.cbeltTopMid3.cmidrev(); this.addChild(this.cbeltTopMid3); this.flippedX = 180;
-		this.cbeltTopMid4 = new cbelt; this.cbeltTopMid4.x = 540; this.cbeltTopMid4.y = 1000; this.cbeltTopMid4.cmidrev(); this.addChild(this.cbeltTopMid4); this.flippedX = 180;
-		this.cbeltTopMid5 = new cbelt; this.cbeltTopMid5.x = 720; this.cbeltTopMid5.y = 1000; this.cbeltTopMid5.cmidrev(); this.addChild(this.cbeltTopMid5); this.flippedX = 180;
-		this.cbeltTopmMid6 = new cbelt; this.cbeltTopmMid6.x = 900; this.cbeltTopmMid6.y = 1000; this.cbeltTopmMid6.cmidrev(); this.addChild(this.cbeltTopmMid6); this.flippedX = 180;
-		this.cbeltTopMid7 = new cbelt; this.cbeltTopMid7.x = 1080; this.cbeltTopMid7.y = 1000; this.cbeltTopMid7.cmidrev(); this.addChild(this.cbeltTopMid7); this.flippedX = 180;
-		this.cbeltTopMid8 = new cbelt; this.cbeltTopMid8.x = 1260; this.cbeltTopMid8.y = 1000; this.cbeltTopMid8.cmidrev(); this.addChild(this.cbeltTopMid8); this.flippedX = 180;
-		this.cbeltTopMid9 = new cbelt; this.cbeltTopMid9.x = 1440; this.cbeltTopMid9.y = 1000; this.cbeltTopMid9.cmidrev(); this.addChild(this.cbeltTopMid9); this.flippedX = 180;
-		this.cbeltTopMid10 = new cbelt; this.cbeltTopMid10.x = 1620; this.cbeltTopMid10.y = 1000; this.cbeltTopMid10.cmidrev(); this.addChild(this.cbeltTopMid10); this.flippedX = 180;
-		this.cbeltTopMid11 = new cbelt; this.cbeltTopMid11.x = 1800; this.cbeltTopMid11.y = 1000; this.cbeltTopMid11.cmidrev(); this.addChild(this.cbeltTopMid11); this.flippedX = 180;
-		this.cbeltTopMid12 = new cbelt; this.cbeltTopMid12.x = 1980; this.cbeltTopMid12.y = 1000; this.cbeltTopMid12.cmidrev(); this.addChild(this.cbeltTopMid12); this.flippedX = 180;
+	this.cbeltTopMid1 = new cbelt; this.cbeltTopMid1.x = 90; this.cbeltTopMid1.y = 1000; this.cbeltTopMid1.cmidrev(); this.addChild(this.cbeltTopMid1); this.flippedX = 180;
+	this.cbeltTopMid2 = new cbelt; this.cbeltTopMid2.x = 270; this.cbeltTopMid2.y = 1000; this.cbeltTopMid2.cmidrev(); this.addChild(this.cbeltTopMid2); this.flippedX = 180;
+	this.cbeltTopMid3 = new cbelt; this.cbeltTopMid3.x = 360; this.cbeltTopMid3.y = 1000; this.cbeltTopMid3.cmidrev(); this.addChild(this.cbeltTopMid3); this.flippedX = 180;
+	this.cbeltTopMid4 = new cbelt; this.cbeltTopMid4.x = 540; this.cbeltTopMid4.y = 1000; this.cbeltTopMid4.cmidrev(); this.addChild(this.cbeltTopMid4); this.flippedX = 180;
+	this.cbeltTopMid5 = new cbelt; this.cbeltTopMid5.x = 720; this.cbeltTopMid5.y = 1000; this.cbeltTopMid5.cmidrev(); this.addChild(this.cbeltTopMid5); this.flippedX = 180;
+	this.cbeltTopmMid6 = new cbelt; this.cbeltTopmMid6.x = 900; this.cbeltTopmMid6.y = 1000; this.cbeltTopmMid6.cmidrev(); this.addChild(this.cbeltTopmMid6); this.flippedX = 180;
+	this.cbeltTopMid7 = new cbelt; this.cbeltTopMid7.x = 1080; this.cbeltTopMid7.y = 1000; this.cbeltTopMid7.cmidrev(); this.addChild(this.cbeltTopMid7); this.flippedX = 180;
+	this.cbeltTopMid8 = new cbelt; this.cbeltTopMid8.x = 1260; this.cbeltTopMid8.y = 1000; this.cbeltTopMid8.cmidrev(); this.addChild(this.cbeltTopMid8); this.flippedX = 180;
+	this.cbeltTopMid9 = new cbelt; this.cbeltTopMid9.x = 1440; this.cbeltTopMid9.y = 1000; this.cbeltTopMid9.cmidrev(); this.addChild(this.cbeltTopMid9); this.flippedX = 180;
+	this.cbeltTopMid10 = new cbelt; this.cbeltTopMid10.x = 1620; this.cbeltTopMid10.y = 1000; this.cbeltTopMid10.cmidrev(); this.addChild(this.cbeltTopMid10); this.flippedX = 180;
+	this.cbeltTopMid11 = new cbelt; this.cbeltTopMid11.x = 1800; this.cbeltTopMid11.y = 1000; this.cbeltTopMid11.cmidrev(); this.addChild(this.cbeltTopMid11); this.flippedX = 180;
+	this.cbeltTopMid12 = new cbelt; this.cbeltTopMid12.x = 1980; this.cbeltTopMid12.y = 1000; this.cbeltTopMid12.cmidrev(); this.addChild(this.cbeltTopMid12); this.flippedX = 180;
 
-		this.addChild(this.blackPaint);
+	this.addChild(this.blackPaint);
         this.addChild(this.redPaint);
         this.addChild(this.whitePaint);
-		this.addChild(this.tires);
-		this.addChild(this.doors);
-		this.addChild(this.engines);
-		this.addChild(this.trash);
-		this.addChild(this.rat);
-		this.addChild(this.player);
-		this.addChild(this.hammer);
-		this.addChild(this.wrench);
-		this.addChild(this.blowtorch);
-		this.addChild(this.item);
-		this.addChild(this.pointslabel);
-		this.addChild(this.liveslabel);
+	this.addChild(this.tires);
+	this.addChild(this.doors);
+	this.addChild(this.engines);
+	this.addChild(this.trash);
+	this.addChild(this.rat);
+	this.addChild(this.player);
+	this.addChild(this.hammer);
+	this.addChild(this.wrench);
+	this.addChild(this.blowtorch);
+	this.addChild(this.item);
+	this.addChild(this.pointslabel);
+	this.addChild(this.liveslabel);
 
-		//prints out what the car needs to the console		
-		//this.PrintCarReq(this.car.req);
+	//prints out what the car needs to the console		
+	//this.PrintCarReq(this.car.req);
 		
         this.spritelist = [this.player, this.engines, this.tires, this.doors,
                             this.blackPaint, this.redPaint, this.whitePaint, 
-							this.hammer, this.wrench, this.blowtorch, this.trash, this.rat];
+				this.hammer, this.wrench, this.blowtorch, this.trash, this.rat];
 		
-		this.counterThing=0;
-		this.CarSpawnSpeed=15;
-		this.CarDiff=3;
-		this.SpawnNewCar();
-		this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
+	this.counterThing=0;
+	this.CarSpawnSpeed=15;
+	this.CarDiff=3;
+	this.SpawnNewCar();
+	this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
         return true;
     },
 
@@ -181,8 +181,8 @@ var GameLayer = cc.Layer.extend({
         this.item.y = this.player.y;
 
         this.CheckCollisions();
-		this.liveslabel.setString("Lives: " + this.player.lives); //updates the lives on screen
-		this.pointslabel.setString("Score: " + this.points); //updates score on screen
+	this.liveslabel.setString("Lives: " + this.player.lives); //updates the lives on screen
+	this.pointslabel.setString("Score: " + this.points); //updates score on screen
     },
 	
 	SpawnNewCar:function(){
@@ -264,16 +264,16 @@ var GameLayer = cc.Layer.extend({
                 cc.log("Not holding anything, and next to car");
             }
             else if (hitObject.tag == "bin") {
-				this.item.tag = "";
+		this.item.tag = "";
                 if (hitObject.contents == "door") this.item.setTexture(res.Door_png);
                 if (hitObject.contents == "tire") this.item.setTexture(res.Tire_png);
                 if (hitObject.contents == "engine") this.item.setTexture(res.Engine_png);
                 cc.log("Picked up " + hitObject.contents);
-				this.audio.playEffect(res.PickUp_wav);
+		this.audio.playEffect(res.PickUp_wav);
                 this.player.state = hitObject.contents;
             }
             else if (hitObject.tag == "paint") {
-				this.item.tag = "perm";
+		this.item.tag = "perm";
                 if (hitObject.ccolor == "white") {
                     hitObject.setTexture(res.whitePaintSign);
                     this.item.setTexture(res.whitePaint_png);
