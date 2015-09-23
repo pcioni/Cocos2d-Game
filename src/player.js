@@ -12,8 +12,16 @@ var Player = cc.Sprite.extend ({
         }
         var playerRunAnim = new cc.Animation(frames, 0.1);
         this.playerAction = new cc.RepeatForever(new cc.Animate(playerRunAnim));
-        this.runAction(this.playerAction);
 
+        this.IDLE = true;
+
+        var standFrame = [cc.spriteFrameCache.getSpriteFrame("Player.png")];
+        var idleAnim = new cc.Animation(standFrame, 0.1);
+        this.idleAction = new cc.RepeatForever(new cc.Animate(idleAnim));
+
+        this.runAction(this.idleAction);
+
+        cc.log( "Run Action: " + this.runAction.toString());
 
         this.UP = false;
         this.DOWN = false;
@@ -76,12 +84,36 @@ var Player = cc.Sprite.extend ({
     },
 
     update:function(dt) {
+        //this.stopAction()
 
         if (this.ratReset > 0) this.ratReset -= 1;
         else {
             this.stunned = false;
             this.speed = 12;
             this.setColor (new cc.Color(255,255,255));
+        }
+
+        if(this.UP  || this.DOWN || this.LEFT || this.RIGHT)
+        {
+            if(this.IDLE)
+            {
+                cc.log("This.UP: " + this.UP + " This.DOWN: " + this.DOWN);
+                cc.log("Changing action to running");
+                this.stopAction(this.idleAction);
+                this.IDLE = false;
+                this.runAction(this.playerAction);
+            }
+        }
+        else
+        {
+            if(this.IDLE == false)
+            {
+                cc.log("Setting action to idleAction");
+                this.IDLE = true;
+                this.stopAction(this.playerAction);
+                this.runAction(this.idleAction);
+                cc.log("Number of running actions: " + this.getNumberOfRunningActions());
+            }
         }
 
         if(this.UP) {
@@ -92,16 +124,22 @@ var Player = cc.Sprite.extend ({
         else if(this.DOWN) {
             if (this.y > 173 + this.height/2)
                 this.y -= this.speed;
+
         }
         if(this.LEFT) {
             this.flippedX = 180;
             if (this.x > 188 + this.width/2)
                 this.x -= this.speed;
+
         }
         else if(this.RIGHT){
+
             this.flippedX = 0;
             if (this.x < 1920 - this.width/2)
                 this.x += this.speed;
+
         }
+
+
     }
 });
