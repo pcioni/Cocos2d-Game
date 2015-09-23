@@ -11,7 +11,11 @@ var GameLayer = cc.Layer.extend({
         this._super();
         this.scheduleUpdate();
 
-		cc.director.setAnimationInterval(1.0/45.0);
+	//On high-end machines, our A-grade, FPS-locked movement suddenly becomes extremely fast and
+	//	extremely janky. I found this solution on the web, and I'm not sure what it does exactly,
+	//	but it makes the game run smoother on my machine.
+	//I'm going to jump in front of a bus if I ever have to do something this hacky again.
+	cc.director.setAnimationInterval(1.0/45.0);
 
         this.audio = cc.audioEngine; //when using anything with audio in app.js, put audio. in front of it
 
@@ -24,10 +28,10 @@ var GameLayer = cc.Layer.extend({
 
         this.item = new Item;
 
-		//the rat lol
-		this.rat = new Rat;
-		this.rat.x = 1200;
-		this.rat.y = 450;
+	//the rat lol
+	this.rat = new Rat;
+	this.rat.x = 1200;
+	this.rat.y = 450;
 
         //Paint children
         this.blackPaint = new Paint;
