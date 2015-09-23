@@ -11,6 +11,8 @@ var GameLayer = cc.Layer.extend({
         this._super();
         this.scheduleUpdate();
 
+		cc.director.setAnimationInterval(1.0/45.0);
+
         this.audio = cc.audioEngine; //when using anything with audio in app.js, put audio. in front of it
 
         this.audio.playMusic(res.StageTheme_wav,true); //plays the stage theme
