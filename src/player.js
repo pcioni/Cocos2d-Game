@@ -1,6 +1,6 @@
 var Player = cc.Sprite.extend ({
     ctor: function () {
-        this._super();
+        this._super(res.Player_png);
 
         //animation junk
         cc.spriteFrameCache.addSpriteFrames(res.playerRun_plist);
@@ -15,11 +15,7 @@ var Player = cc.Sprite.extend ({
 
         this.IDLE = true;
 
-        var standFrame = [cc.spriteFrameCache.getSpriteFrame("Player.png")];
-        var idleAnim = new cc.Animation(standFrame, 0.1);
-        this.idleAction = new cc.RepeatForever(new cc.Animate(idleAnim));
 
-        this.runAction(this.idleAction);
 
         cc.log( "Run Action: " + this.runAction.toString());
 
@@ -111,7 +107,7 @@ var Player = cc.Sprite.extend ({
                 cc.log("Setting action to idleAction");
                 this.IDLE = true;
                 this.stopAction(this.playerAction);
-                this.runAction(this.idleAction);
+                this.setTexture(res.Player_png);
                 cc.log("Number of running actions: " + this.getNumberOfRunningActions());
             }
         }
