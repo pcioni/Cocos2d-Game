@@ -198,12 +198,15 @@ var GameLayer = cc.Layer.extend({
 		this.counterThing=this.counterThing+1;
 		
 		//THIS IS WHERE OUT DIFFICULTY CURVE IS MADE
-		//PLAY WITH THIS AND MAKE IT BETTER THAN MINE... it's kinda shit
+		
+		//Every 3 cars spawn cars will spawn a second faster
+		//until a car spawns every 8 seconds
 		if(this.CarSpawnSpeed>8 && this.counterThing%3==0){
 			this.CarSpawnSpeed=this.CarSpawnSpeed-1;
 			this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
 		}
 		
+		//After 10 cars, cars will require 4 tasks done to them inorder to be completed
 		if(this.counterThing==10){
 			this.CarDiff=4;
 			this.schedule(this.SpawnNewCar, this.CarSpawnSpeed);
